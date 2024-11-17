@@ -12,8 +12,7 @@ export default function RootLayout({
       <GymHeader />
       <div className="flex h-[calc(100vh-5em)]">
         <GymSidebar />
-
-        <div className="flex-grow bg-gray-200">{children}</div>
+        <div className="flex-grow px-[3vw]">{children}</div>
       </div>
     </div>
   );

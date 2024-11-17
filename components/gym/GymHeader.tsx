@@ -10,7 +10,7 @@ import {
   IoMdArrowDropdown,
 } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
-import Store from "@/store";
+import Store from "@/helpers/store";
 
 const GymHeader = () => {
   const pathname = usePathname();

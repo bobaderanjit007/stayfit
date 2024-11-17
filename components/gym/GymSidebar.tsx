@@ -21,7 +21,7 @@ import {
 import { GiHealthIncrease, GiPayMoney, GiReceiveMoney } from "react-icons/gi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import Link from "next/link";
-import Store from "@/store";
+import Store from "@/helpers/store";
 import { usePathname } from "next/navigation";
 
 const menuItems = [
@@ -71,7 +71,7 @@ const GymSidebar = () => {
           href={item.itemLoc}
           key={index}
           className={`${
-            item.itemLoc === pathname
+            pathname.includes(item.itemLoc)
               ? "bg-red-600 text-white"
               : "text-[#4a4a4a]"
           } flex items-center  space-x-[0.5em] px-4`}
