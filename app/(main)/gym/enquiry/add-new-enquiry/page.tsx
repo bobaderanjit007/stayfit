@@ -20,7 +20,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Calendar } from "@/components/ui/calendar";
 import {
   Select,
   SelectContent,
@@ -120,22 +119,39 @@ const AddNewEnquiry = () => {
               />
               <FormField
                 control={addEnquiryForm.control}
-                name="dateOfBirth"
+                name="mobileNumber"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Date Of Birth</FormLabel>
                     <FormControl>
-                      {/* <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={(date) => field.onChange(date)}
-                        className="rounded-md border"
-                      /> */}
+                      <Input
+                        autoComplete="off"
+                        placeholder="Date Of Birth"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              {/* <FormField
+                control={addEnquiryForm.control}
+                name="dateOfBirth"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Date Of Birth</FormLabel>
+                    <FormControl>
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={(date) => field.onChange(date)}
+                        className="rounded-md border"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              /> */}
               <FormField
                 control={addEnquiryForm.control}
                 name="gender"
