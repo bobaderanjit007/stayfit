@@ -65,7 +65,7 @@ const GymSidebar = () => {
   const pathname = usePathname();
   const { isShowSidebar } = Store.mainStore();
   return (
-    <div className="space-y-[0.3em]  text-[1.1rem] bottom-0  overflow-auto h-full scrollbar-none pt-4 pb-10 scrollbar-hide">
+    <div className=" text-[1.1rem] bottom-0 overflow-auto h-full scrollbar-none pt-4 pb-10 scrollbar-hide">
       {menuItems.map((item, index) => (
         <Link
           href={item.itemLoc}
@@ -76,7 +76,7 @@ const GymSidebar = () => {
               : "text-[#4a4a4a]"
           } flex items-center  space-x-[0.5em] px-4`}
         >
-          <div className="py-2">{item.icon}</div>
+          <div className="py-3">{item.icon}</div>
           <div
             className={`${
               isShowSidebar ? "" : "hidden"
