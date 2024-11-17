@@ -1,12 +1,11 @@
 "use client";
-import { ViewType } from "@/app/(main)/gym/enquiry/page";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 
 type EnquiryTabProps = {
-  showView: ViewType;
-  setShowView: React.Dispatch<React.SetStateAction<ViewType>>;
+  showView: string;
+  setShowView: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const EnquiryTab = ({ showView, setShowView }: EnquiryTabProps) => {
@@ -15,15 +14,15 @@ const EnquiryTab = ({ showView, setShowView }: EnquiryTabProps) => {
       <div className="space-x-[2em]">
         <Button
           className="uppercase w-[10em]"
-          variant={showView == ViewType.ENQUIRY ? "default" : "outline"}
-          onClick={() => setShowView(ViewType.ENQUIRY)}
+          variant={showView == "enquiry" ? "default" : "outline"}
+          onClick={() => setShowView("enquiry")}
         >
           Enquiry
         </Button>
         <Button
           className="uppercase w-[10em]"
-          variant={showView == ViewType.TRIAL ? "default" : "outline"}
-          onClick={() => setShowView(ViewType.TRIAL)}
+          variant={showView == "trial" ? "default" : "outline"}
+          onClick={() => setShowView("trial")}
         >
           Trial
         </Button>

@@ -4,11 +4,6 @@ import EnquiryTab from "@/components/gym/enquiry/EnquiryTab";
 import React, { useState } from "react";
 import { columns, Enquiry } from "./columns";
 
-export enum ViewType {
-  ENQUIRY = "enquiry",
-  TRIAL = "trial",
-}
-
 const randomEnquiries: Enquiry[] = [
   {
     id: "1",
@@ -103,7 +98,7 @@ const randomEnquiries: Enquiry[] = [
 ];
 
 const GymEnquiry = () => {
-  const [showView, setShowView] = useState<ViewType>(ViewType.ENQUIRY);
+  const [showView, setShowView] = useState<string>("");
   return (
     <div className="">
       {/* Tab  */}
