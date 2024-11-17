@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, Router } from "lucide-react";
 import { ArrowUpDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
 
 export type Enquiry = {
   id: string;
@@ -54,6 +55,7 @@ export const columns: ColumnDef<Enquiry>[] = [
     ),
     cell: ({ row }) => {
       const payment = row.original;
+      const router = useRouter();
       return (
         <React.Fragment>
           <Checkbox
@@ -76,7 +78,11 @@ export const columns: ColumnDef<Enquiry>[] = [
               >
                 Follow up
               </DropdownMenuItem>
-              <DropdownMenuItem>Convert to member</DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => router.push("/gym/members/add-new-member")}
+              >
+                Convert to member
+              </DropdownMenuItem>
               <DropdownMenuItem>Close enquiry</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

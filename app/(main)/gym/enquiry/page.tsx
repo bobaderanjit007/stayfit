@@ -98,7 +98,7 @@ const randomEnquiries: Enquiry[] = [
 ];
 
 const GymEnquiry = () => {
-  const [showView, setShowView] = useState<string>("");
+  const [showView, setShowView] = useState<string>("enquiry");
   return (
     <div className="">
       {/* Tab  */}

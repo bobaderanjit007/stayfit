@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
+import { Calendar } from "@/components/ui/calendar";
 import {
   Select,
   SelectContent,
@@ -29,7 +29,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const AddEnquiry = () => {
+const AddNewEnquiry = () => {
   const router = useRouter();
   const addEnquiryForm = useForm<z.infer<typeof addEnquiryFormSchema>>({
     resolver: zodResolver(addEnquiryFormSchema),
@@ -71,7 +71,11 @@ const AddEnquiry = () => {
                     <FormItem>
                       <FormLabel>Name *</FormLabel>
                       <FormControl>
-                        <Input placeholder="Name" {...field} />
+                        <Input
+                          autoComplete="off"
+                          placeholder="Name"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -86,7 +90,11 @@ const AddEnquiry = () => {
                     <FormItem>
                       <FormLabel>Email *</FormLabel>
                       <FormControl>
-                        <Input placeholder="Email" {...field} />
+                        <Input
+                          autoComplete="off"
+                          placeholder="Email"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -100,7 +108,11 @@ const AddEnquiry = () => {
                   <FormItem>
                     <FormLabel>Mobile Number *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Mobile Number" {...field} />
+                      <Input
+                        autoComplete="off"
+                        placeholder="Mobile Number"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -113,7 +125,12 @@ const AddEnquiry = () => {
                   <FormItem>
                     <FormLabel>Date Of Birth</FormLabel>
                     <FormControl>
-                      <Input placeholder="Mobile Number" {...field} />
+                      {/* <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={(date) => field.onChange(date)}
+                        className="rounded-md border"
+                      /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -262,7 +279,11 @@ const AddEnquiry = () => {
                   <FormItem>
                     <FormLabel>Price</FormLabel>
                     <FormControl>
-                      <Input placeholder="Price" {...field} />
+                      <Input
+                        autoComplete="off"
+                        placeholder="Price"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -275,85 +296,11 @@ const AddEnquiry = () => {
                   <FormItem>
                     <FormLabel>Negotiated Amount</FormLabel>
                     <FormControl>
-                      <Input placeholder="Negotiated Amount" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-          </div>
-          {/* Address Details */}
-          <div>
-            <span className="text-blue-400">Address Details</span>
-            <div className="grid grid-cols-4 gap-[0.8em]">
-              <FormField
-                control={addEnquiryForm.control}
-                name="plan"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Select Plan *</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Plan" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="walk-in">Walk in</SelectItem>
-                          <SelectItem value="reference">Reference</SelectItem>
-                          <SelectItem value="promotion">Promotion</SelectItem>
-                          <SelectItem value="stayfit">Stayfit</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={addEnquiryForm.control}
-                name="package"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Package *</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Package" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="walk-in">Walk in</SelectItem>
-                          <SelectItem value="reference">Reference</SelectItem>
-                          <SelectItem value="promotion">Promotion</SelectItem>
-                          <SelectItem value="stayfit">Stayfit</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={addEnquiryForm.control}
-                name="price"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Price</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Price" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={addEnquiryForm.control}
-                name="negotiatedAmount"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Negotiated Amount</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Negotiated Amount" {...field} />
+                      <Input
+                        autoComplete="off"
+                        placeholder="Negotiated Amount"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -362,11 +309,133 @@ const AddEnquiry = () => {
             </div>
           </div>
 
-          <Button type="submit">Submit</Button>
+          {/* Address Details */}
+          <div>
+            <span className="text-blue-400">Address Details</span>
+            <div className="grid grid-cols-4 gap-[0.8em]">
+              <div className="col-span-2">
+                <FormField
+                  control={addEnquiryForm.control}
+                  name="searchAddress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Search Address </FormLabel>
+                      <FormControl>
+                        <Input
+                          autoComplete="off"
+                          placeholder="Search Address"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="col-span-2">
+                <FormField
+                  control={addEnquiryForm.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Address</FormLabel>
+                      <FormControl>
+                        <Input
+                          autoComplete="off"
+                          placeholder="Address"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormField
+                control={addEnquiryForm.control}
+                name="locality"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Locality </FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Locality"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addEnquiryForm.control}
+                name="state"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>State </FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="State"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addEnquiryForm.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Country </FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Country"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addEnquiryForm.control}
+                name="pincode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Pincode </FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Pincode"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          <div className="space-x-2 flex justify-end">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => router.back()}
+            >
+              Cancel
+            </Button>
+            <Button type="submit">Submit</Button>
+          </div>
         </form>
       </Form>
     </div>
   );
 };
 
-export default AddEnquiry;
+export default AddNewEnquiry;

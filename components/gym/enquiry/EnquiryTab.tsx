@@ -28,7 +28,7 @@ const EnquiryTab = ({ showView, setShowView }: EnquiryTabProps) => {
         </Button>
       </div>
 
-      <Link href="/gym/enquiry/add-enquiry">
+      <Link href="/gym/enquiry/add-new-enquiry">
         <Button variant="outline">Add New Enquiry</Button>
       </Link>
     </div>

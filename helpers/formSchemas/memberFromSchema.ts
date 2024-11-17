@@ -7,7 +7,7 @@ export const addEnquiryFormSchema = z.object({
   mobileNumber: z
     .string()
     .regex(/^\d{10}$/, { message: "Mobile number must be exactly 10 digits" }),
-  dateOfBirth: z.string().optional(), // Assuming it's a string (e.g., ISO date format)
+  dateOfBirth: z.date().optional(),
   gender: z.enum(["male", "female"], { message: "Gender is required" }),
   reference: z.enum(["walk-in", "reference", "promotion", "stayfit"], {
     message: "Reference type is required",
@@ -40,7 +40,7 @@ export const addEnquiryDefaultValues: z.infer<typeof addEnquiryFormSchema> = {
   name: "",
   email: "",
   mobileNumber: "",
-  dateOfBirth: "",
+  dateOfBirth: new Date(),
   gender: "male", // Defaulting to "MALE"
   reference: "walk-in", // Defaulting to "WALK-IN"
 
