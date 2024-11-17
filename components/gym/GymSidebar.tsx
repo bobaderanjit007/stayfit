@@ -6,7 +6,6 @@ import {
   MdPerson,
   MdPeople,
   MdEvent,
-  MdClass,
   MdOutlineSchedule,
   MdAnalytics,
   MdReport,
