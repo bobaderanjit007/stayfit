@@ -65,7 +65,7 @@ const GymSidebar = () => {
   const pathname = usePathname();
   const { isShowSidebar } = Store.mainStore();
   return (
-    <div className=" text-[1.1rem] bottom-0 overflow-auto h-full scrollbar-none pt-4 pb-10 scrollbar-hide">
+    <div className=" text-[1.1rem] bottom-0 overflow-auto h-full border-r shadow-md scrollbar-none pt-4 pb-10 scrollbar-hide">
       {menuItems.map((item, index) => (
         <Link
           href={item.itemLoc}
