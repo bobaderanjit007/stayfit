@@ -34,6 +34,18 @@ const GymHeader = () => {
           <Link href="/">StayFit</Link>
         </span>
       </div>
+
+      {/* SideBar Indications  */}
+      <div className="flex items-center space-x-[1em]">
+        <span>SideBar Indications</span>
+        <span className="bg-red-600 p-1.5 text-white rounded-md">
+          Active Tab
+        </span>
+        <span className="bg-blue-700 p-1.5 text-white rounded-md">
+          Work In Process
+        </span>
+      </div>
+
       {/* Setting, Notifications, Profile */}
       <div className="flex text-[1.4em] items-center space-x-[0.6em]">
         <Link

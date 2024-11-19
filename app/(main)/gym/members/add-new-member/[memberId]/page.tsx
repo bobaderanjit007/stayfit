@@ -460,7 +460,7 @@ const AddNewMember = () => {
             >
               Cancel
             </Button>
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Save</Button>
           </div>
         </form>
       </Form>
