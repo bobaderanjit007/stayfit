@@ -36,7 +36,10 @@ const GymHeader = () => {
       </div>
       {/* Setting, Notifications, Profile */}
       <div className="flex text-[1.4em] items-center space-x-[0.6em]">
-        <Link href={`http://localhost:3000${pathname}`} target="_blank">
+        <Link
+          href={`https://stayfit-beta.vercel.app${pathname}`}
+          target="_blank"
+        >
           <ImNewTab />
         </Link>
         <span>
