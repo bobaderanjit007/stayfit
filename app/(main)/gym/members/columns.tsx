@@ -17,30 +17,23 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 
-export type Enquiry = {
+export type Member = {
   id: string;
   name: string;
   phone: number;
   gender: "male" | "female";
-  followUpDate?: Date;
-  enqStatus: "enquiry" | "follow-up" | "converted" | "closed";
-  leadType: "converted" | "hot" | "cold" | "warm" | "free-trial" | "expected";
-  expectedJoining?: Date;
-  enqDate: Date; // enquiry date (save while form submission)
-  lastUpdated?: Date; // last updated date and time (Save while enquiry updation)
-  remark?: string;
-  lastCallStatus?:
-    | "call-connected"
-    | "call-not-connected"
-    | "call-busy"
-    | "ringing-not-responding";
-  referenceType?: "walk-in" | "reference" | "promotion" | "stayfit";
-  reference?: string;
+  regnDate: Date; // registration date (save while form submission)
+  lastExpiry?: Date;
+  status: "active" | "inactive";
+  emailId?: string;
+  dob?: Date;
+  referralPoints?: string;
   assignedTo?: string;
-  updatedBy?: string;
+  createdBy?: string;
+  lastUpdated?: Date; // last updated date and time (Save while enquiry updation)
 };
 
-export const columns: ColumnDef<Enquiry>[] = [
+export const columns: ColumnDef<Member>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -72,14 +65,12 @@ export const columns: ColumnDef<Enquiry>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(member.id)}
-              >
-                Follow up
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href={`/gym/members/add-new-member/${member.id}`}>
-                  Convert to member
+              <DropdownMenuItem className="p-0">
+                <Link
+                  href={`/gym/members/${member.id}/profile`}
+                  className="w-full p-2"
+                >
+                  View Profile
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -91,8 +82,15 @@ export const columns: ColumnDef<Enquiry>[] = [
     enableHiding: false,
   },
   {
+    id: "sr no",
+    header: "Sr No.",
+    cell: ({ row }) => {
+      return row.index + 1;
+    },
+  },
+  {
     accessorKey: "name",
-    header: "Name",
+    header: "Member name",
   },
   {
     accessorKey: "phone",
@@ -118,52 +116,38 @@ export const columns: ColumnDef<Enquiry>[] = [
     },
   },
   {
-    accessorKey: "enqDate",
-    header: "Enquiry Date",
+    accessorKey: "regnDate",
+    header: "Registraion Date",
   },
   {
-    accessorKey: "followUpDate",
-    header: "Follow Up Date",
-  },
-
-  {
-    accessorKey: "expectedJoining",
-    header: "Expected Joining",
+    accessorKey: "lastExpiry",
+    header: "Last Plan Expiry",
   },
 
   {
-    accessorKey: "enqStatus",
-    header: "Enquiry Status",
+    accessorKey: "status",
+    header: "Status",
   },
   {
-    accessorKey: "leadType",
-    header: "Lead type",
+    accessorKey: "emailId",
+    header: "Email ID",
   },
   {
-    accessorKey: "remark",
-    header: "Remark",
+    accessorKey: "dob",
+    header: "Date Of Birth",
   },
   {
-    accessorKey: "lastCallStatus",
-    header: "Last call status",
-  },
-  {
-    accessorKey: "referenceType",
-    header: "Reference Type",
-  },
-  {
-    accessorKey: "reference",
-    header: "Reference",
+    accessorKey: "referralPoints",
+    header: "Referral Points",
   },
   {
     accessorKey: "assignedTo",
     header: "Assigned To",
   },
   {
-    accessorKey: "updatedBy",
-    header: "Updated By",
+    accessorKey: "createdBy",
+    header: "Created By",
   },
-
   {
     accessorKey: "lastUpdated",
     header: "Last Updated",

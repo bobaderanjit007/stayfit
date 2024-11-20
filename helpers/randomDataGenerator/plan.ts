@@ -22,12 +22,12 @@ const getRandomInt = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
 const getRandomPlanType = () => {
-  const planTypes = ["basic", "special", "FYT lead"];
+  const planTypes = ["basic", "special", "lead"];
   return planTypes[getRandomInt(0, planTypes.length - 1)];
 };
 const getRandomPlanFor = () => {
-  const planTypes = ["male", "female", "unisex"];
-  return planTypes[getRandomInt(0, planTypes.length - 1)];
+  const planFor = ["male", "female", "unisex"];
+  return planFor[getRandomInt(0, planFor.length - 1)];
 };
 
 const getRandomCategory = () => {
@@ -74,6 +74,7 @@ const generateRandomData = (numPlans = 5) => {
     }
 
     plans.push({
+      _id: crypto.randomUUID(),
       isActive: getRandomIsActive(),
       planName: `Plan ${getRandomInt(1, 100)}`,
       category: getRandomCategory(),

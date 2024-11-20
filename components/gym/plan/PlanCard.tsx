@@ -21,13 +21,23 @@ import { PlanCardTypes } from "@/helpers/Types/plan";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { Dumbbell } from "lucide-react";
+import { FaFemale } from "react-icons/fa";
+import { BiMaleFemale } from "react-icons/bi";
 import { GrYoga } from "react-icons/gr";
+import { FaMale } from "react-icons/fa";
+import { CiStar } from "react-icons/ci";
+import { GiCutDiamond } from "react-icons/gi";
+import Link from "next/link";
 
 const PlanCard = ({ plan }: { plan: PlanCardTypes }) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className=" flex items-center justify-between w-full">
+    <Card onClick={() => console.log(plan)}>
+      <CardHeader className="px-0 pb-3 pt-0">
+        <CardTitle
+          className={` flex items-center justify-between w-full border-b rounded-t-md px-6 py-2 ${
+            plan.planType == "basic" ? "bg-blue-300" : "bg-red-300"
+          }`}
+        >
           <span> {plan.planName} </span>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -39,16 +49,23 @@ const PlanCard = ({ plan }: { plan: PlanCardTypes }) => {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem>View Details</DropdownMenuItem>
+              <DropdownMenuItem className="p-0">
+                <Link
+                  href={`/gym/plans/${plan._id}/edit-plan`}
+                  className="w-full p-2"
+                >
+                  Edit
+                </Link>
+              </DropdownMenuItem>
+
               <DropdownMenuItem className="text-red-500">
                 Deactivate
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </CardTitle>
-        <CardDescription className="flex justify-between">
-          <span className="flex items-center">
+        <CardDescription className=" px-6 grid grid-cols-3">
+          <span className="flex items-center border-r justify-start">
             {plan.category == "gym" ? (
               <Dumbbell className="h-3" />
             ) : (
@@ -56,8 +73,26 @@ const PlanCard = ({ plan }: { plan: PlanCardTypes }) => {
             )}{" "}
             <span className="ml-1 capitalize">{plan.category}</span>
           </span>
-          <span>{plan.planType}</span>
-          <span>{plan.planFor}</span>
+          <span className="flex items-center border-r justify-center">
+            {plan.planType == "basic" ? (
+              <CiStar className="h-3" />
+            ) : plan.planType == "special" ? (
+              <GiCutDiamond className="h-3" />
+            ) : (
+              <CiStar />
+            )}{" "}
+            <span className="ml-1 capitalize">{plan.planType}</span>
+          </span>
+          <span className="flex items-center justify-end">
+            {plan.planFor == "female" ? (
+              <FaFemale className="h-3" />
+            ) : plan.planFor == "male" ? (
+              <FaMale className="h-3" />
+            ) : (
+              <BiMaleFemale />
+            )}{" "}
+            <span className="ml-1 capitalize">{plan.planFor}</span>
+          </span>
         </CardDescription>
       </CardHeader>
       <CardContent className="border-b border-t py-1">

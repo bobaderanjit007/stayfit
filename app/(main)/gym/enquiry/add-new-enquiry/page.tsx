@@ -9,7 +9,9 @@ import {
 } from "@/helpers/formSchemas/memberFromSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,6 +22,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -30,6 +38,8 @@ import {
 
 const AddNewEnquiry = () => {
   const router = useRouter();
+  const [date, setDate] = React.useState<Date>();
+
   const addEnquiryForm = useForm<z.infer<typeof addEnquiryFormSchema>>({
     resolver: zodResolver(addEnquiryFormSchema),
     defaultValues: addEnquiryDefaultValues,
@@ -87,7 +97,7 @@ const AddNewEnquiry = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email *</FormLabel>
+                      <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
                           autoComplete="off"
@@ -117,6 +127,28 @@ const AddNewEnquiry = () => {
                   </FormItem>
                 )}
               />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"outline"}
+                    className={cn(
+                      "w-[280px] justify-start text-left font-normal",
+                      !date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
               <FormField
                 control={addEnquiryForm.control}
                 name="mobileNumber"
@@ -214,7 +246,7 @@ const AddNewEnquiry = () => {
                 name="staffName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Staff Name *</FormLabel>
+                    <FormLabel>Staff Name </FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={field.onChange}
@@ -247,7 +279,7 @@ const AddNewEnquiry = () => {
                 name="plan"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Select Plan *</FormLabel>
+                    <FormLabel>Select Plan </FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange}>
                         <SelectTrigger>
@@ -270,7 +302,7 @@ const AddNewEnquiry = () => {
                 name="package"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Package *</FormLabel>
+                    <FormLabel>Package </FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange}>
                         <SelectTrigger>

@@ -4,7 +4,7 @@ import { z } from "zod";
 export const addEnquiryFormSchema = z.object({
   // Personal Details
   name: z.string().min(1, { message: "Name is required" }),
-  email: z.string().email({ message: "Invalid email address" }).optional(),
+  email: z.string().optional(),
   mobileNumber: z
     .string()
     .regex(/^\d{10}$/, { message: "Mobile number must be exactly 10 digits" }),
@@ -30,10 +30,7 @@ export const addEnquiryFormSchema = z.object({
   state: z.string().optional(),
   country: z.string().optional(),
   address: z.string().optional(),
-  pincode: z
-    .string()
-    .regex(/^\d{6}$/, { message: "Pincode must be exactly 6 digits" })
-    .optional(),
+  pincode: z.string().optional(),
 });
 
 // Enquiry Form Default values

@@ -1,19 +1,21 @@
-// Plan Cards 
+// Plan Cards
 
 type Package = {
-    packageType: string;
-    durationInDays: number;
-    sessions: number;
-    priceInRupees: number;
-    discountInRupees: number;
-  };
-  
+  packageType: string;
+  durationInDays: number;
+  sessions: number;
+  priceInRupees: number;
+  discountInRupees: number;
+};
+
 export type PlanCardTypes = {
-    planName: string;
-    category: string;
-    planType: string;
-    planFor: string;
-    showPlanOnline: boolean;
-    description: string;
-    packages: Package[];
-  };
+  _id: string;
+  isActive: boolean;
+  planName: string;
+  category: string;
+  planType: string;
+  planFor: string;
+  showPlanOnline: boolean;
+  description: string;
+  packages: Package[];
+};

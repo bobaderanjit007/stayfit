@@ -112,7 +112,7 @@ export function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="capitalize">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -134,7 +134,7 @@ export function DataTable<TData, TValue>({
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      <span className="line-clamp-1 w-[8em]">
+                      <span className="line-clamp-1 w-[8em] capitalize">
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()

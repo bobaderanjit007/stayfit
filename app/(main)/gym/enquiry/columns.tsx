@@ -78,7 +78,7 @@ export const columns: ColumnDef<Enquiry>[] = [
                 Follow up
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/gym/members/add-new-member/${enquiry.id}`}>
+                <Link href={`/gym/members/${enquiry.id}/add-new-member`}>
                   Convert to member
                 </Link>
               </DropdownMenuItem>

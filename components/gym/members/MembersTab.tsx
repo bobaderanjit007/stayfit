@@ -53,7 +53,7 @@ const MembersTab = ({ showView, setShowView }: MembersTabProps) => {
             <Button variant="outline">Search</Button>
           </div>
           <DialogFooter className="space-x-3">
-            <Link href="/gym/members/add-new-member/8">
+            <Link href="/gym/members/8/add-new-member">
               <Button>Add New Member</Button>
             </Link>
           </DialogFooter>
