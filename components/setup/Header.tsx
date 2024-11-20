@@ -6,9 +6,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    console.log(window.innerHeight, isScrolled);
-  }, [isScrolled]);
-  useEffect(() => {
     const handleScroll = () => {
       // Check if the page has scrolled more than the viewport height
       if (window.scrollY > window.innerHeight * 0.1) {

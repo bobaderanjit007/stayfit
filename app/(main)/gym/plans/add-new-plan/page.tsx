@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import ContentTitle from "@/components/setup/ContentTitle";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,28 +29,15 @@ import {
   planFormSchema,
 } from "@/helpers/formSchemas/gymFormSchema";
 import { DataTable } from "@/components/gym/enquiry/data-table";
-import { planColumns, PlanPackages } from "./planColumns";
-
-const randomPlanPackages: PlanPackages[] = Array.from({ length: 5 }, () => {
-  const duration = Math.floor(Math.random() * 365) + 1; // Random duration between 1 and 365 days
-  const sessions = Math.floor(Math.random() * 50) + 1; // Random sessions between 1 and 50
-  const packagePrice = Math.floor(Math.random() * 50000) + 1000; // Random price between 1000 and 50000
-  const discount = Math.floor(Math.random() * 5000); // Random discount between 0 and 5000
-  const netPrice = packagePrice - discount; // Calculate net price
-
-  return {
-    id: crypto.randomUUID(), // Generate a random UUID for id
-    name: `Package ${Math.random().toString(36).substring(7)}`, // Random alphanumeric name
-    duration,
-    sessions,
-    packagePrice,
-    discount,
-    netPrice: netPrice > 0 ? netPrice : 0, // Ensure net price is not negative
-  };
-});
+import { getPlanColumns, PlanPackages } from "./planColumns";
+import { randomPlanPackages } from "@/helpers/randomDataGenerator/plan";
 
 const AddNewPlan = () => {
   const router = useRouter();
+
+  const [palnPackages, setPlanPackages] =
+    useState<PlanPackages[]>(randomPlanPackages);
+
   const addPlanForm = useForm<z.infer<typeof planFormSchema>>({
     resolver: zodResolver(planFormSchema),
     defaultValues: planFormDefaultValues,
@@ -58,8 +45,44 @@ const AddNewPlan = () => {
 
   function onSubmit(values: z.infer<typeof planFormSchema>) {
     router.push("/gym/dashboard");
-    console.log(values);
+    console.log(values.planDetails, palnPackages);
   }
+
+  const addPackageToPlan = () => {
+    const {
+      packageDetails: {
+        packageType,
+        durationInDays,
+        sessions,
+        priceInRupees,
+        discountInRupees,
+      },
+    } = addPlanForm.getValues();
+
+    setPlanPackages([
+      ...palnPackages,
+      {
+        id: crypto.randomUUID(),
+        name: packageType || "",
+        duration: durationInDays || 0,
+        sessions: sessions || 0,
+        packagePrice: priceInRupees || 0,
+        discount: discountInRupees || 0,
+        netPrice:
+          priceInRupees && discountInRupees
+            ? priceInRupees - discountInRupees
+            : 0,
+      },
+    ]);
+  };
+
+  const handleRemovePackage = (id: string) => {
+    setPlanPackages((prevPackages) =>
+      prevPackages.filter((packageItem) => packageItem.id !== id)
+    );
+  };
+
+  const planColumns = getPlanColumns(handleRemovePackage);
 
   return (
     <div className=" py-5 space-y-[1.5em]">
@@ -101,10 +124,7 @@ const AddNewPlan = () => {
                   <FormItem>
                     <FormLabel>Plan Category </FormLabel>
                     <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+                      <Select onValueChange={field.onChange}>
                         <SelectTrigger>
                           <SelectValue placeholder="Plan Category" />
                         </SelectTrigger>
@@ -143,7 +163,7 @@ const AddNewPlan = () => {
                   </FormItem>
                 )}
               />
-              <div className="col-span-3">
+              <div className="col-span-2">
                 <FormField
                   control={addPlanForm.control}
                   name="planDetails.description"
@@ -163,6 +183,33 @@ const AddNewPlan = () => {
                 />
               </div>
 
+              <FormField
+                control={addPlanForm.control}
+                name="planDetails.showPlanOnline"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Show Plan Online </FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value ? "true" : "false"}
+                        onValueChange={(value) =>
+                          field.onChange(value === "true")
+                        }
+                        // defaultValue={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Show Plan Online" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="true">Yes</SelectItem>
+                          <SelectItem value="false">No</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={addPlanForm.control}
                 name="planDetails.planFor"
@@ -200,10 +247,26 @@ const AddNewPlan = () => {
                 name="packageDetails.packageType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Package Type *</FormLabel>
+                    <FormLabel>Package Type </FormLabel>
                     <FormControl>
                       <Select
-                        onValueChange={field.onChange}
+                        onValueChange={(e) => {
+                          field.onChange(e);
+
+                          const durationMap: Record<string, number> = {
+                            weekly: 7,
+                            monthly: 30,
+                            quarterly: 90,
+                            "half-yearly": 180,
+                            yearly: 365,
+                            lifetime: 3650,
+                          };
+
+                          addPlanForm.setValue(
+                            "packageDetails.durationInDays",
+                            durationMap[e] || 0
+                          );
+                        }}
                         defaultValue={field.value}
                       >
                         <SelectTrigger>
@@ -217,7 +280,7 @@ const AddNewPlan = () => {
                             Half Yearly
                           </SelectItem>
                           <SelectItem value="yearly">Yearly</SelectItem>
-                          <SelectItem value="lifeTime">Lifetime</SelectItem>
+                          <SelectItem value="lifetime">Lifetime</SelectItem>
                           <SelectItem value="custom">Custom Package</SelectItem>
                         </SelectContent>
                       </Select>
@@ -226,52 +289,6 @@ const AddNewPlan = () => {
                   </FormItem>
                 )}
               />
-              {/* <FormField
-                control={addPlanForm.control}
-                name="plan"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Select Plan *</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Plan" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="walk-in">Walk in</SelectItem>
-                          <SelectItem value="reference">Reference</SelectItem>
-                          <SelectItem value="promotion">Promotion</SelectItem>
-                          <SelectItem value="stayfit">Stayfit</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> */}
-              {/* <FormField
-                control={addPlanForm.control}
-                name="package"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Package *</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Package" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="walk-in">Walk in</SelectItem>
-                          <SelectItem value="reference">Reference</SelectItem>
-                          <SelectItem value="promotion">Promotion</SelectItem>
-                          <SelectItem value="stayfit">Stayfit</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> */}
               <FormField
                 control={addPlanForm.control}
                 name="packageDetails.durationInDays"
@@ -279,16 +296,20 @@ const AddNewPlan = () => {
                   const packageName = addPlanForm.watch(
                     "packageDetails.packageType"
                   );
+
                   return (
                     <FormItem>
-                      <FormLabel>Duration In Days *</FormLabel>
+                      <FormLabel>Duration In Days </FormLabel>
                       <FormControl>
                         <Input
                           autoComplete="off"
                           readOnly={packageName !== "custom"}
                           type="nubmer"
                           placeholder="Duration In Days"
-                          {...field}
+                          value={field.value}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
                         />
                       </FormControl>
                       <FormMessage />
@@ -299,76 +320,95 @@ const AddNewPlan = () => {
               <FormField
                 control={addPlanForm.control}
                 name="packageDetails.sessions"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Sessions *</FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        type="nubmer"
-                        placeholder="Sessions"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>Sessions </FormLabel>
+                      <FormControl>
+                        <Input
+                          autoComplete="off"
+                          type="nubmer"
+                          placeholder="Sessions"
+                          value={field.value}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
               <FormField
                 control={addPlanForm.control}
                 name="packageDetails.priceInRupees"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Price (In Rupees) *</FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        type="number"
-                        placeholder="Price In Rupees"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>Price (In Rupees) </FormLabel>
+                      <FormControl>
+                        <Input
+                          autoComplete="off"
+                          type="nubmer"
+                          placeholder="Price (In Rupees)"
+                          value={field.value}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
               <FormField
                 control={addPlanForm.control}
                 name="packageDetails.discountInRupees"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Discount (In Rupees) *</FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        type="nubmer"
-                        placeholder="Discount In Rupees"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>Discount (In Rupees) </FormLabel>
+                      <FormControl>
+                        <Input
+                          autoComplete="off"
+                          type="nubmer"
+                          placeholder="Discount (In Rupees)"
+                          value={field.value}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
             </div>
           </div>
-          <Button>Add Package</Button>
-          <div className="space-x-3 flex justify-end">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => router.back()}
-            >
-              Cancel
+          <div className="flex justify-between">
+            <Button type="button" onClick={addPackageToPlan}>
+              Add Package
             </Button>
-            <Button type="submit">Save</Button>
+            <div className="space-x-3 flex justify-end">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => router.back()}
+              >
+                Cancel
+              </Button>
+              <Button type="submit">Save</Button>
+            </div>
           </div>
         </form>
       </Form>
       <hr />
       {/* Packages Table */}
       <ContentTitle title="Packages List" hideBackbtn />
-      <DataTable columns={planColumns} data={randomPlanPackages} />
+      <DataTable columns={planColumns} data={palnPackages} />
     </div>
   );
 };

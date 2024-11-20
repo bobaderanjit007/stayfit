@@ -54,7 +54,7 @@ export const columns: ColumnDef<Enquiry>[] = [
       />
     ),
     cell: ({ row }) => {
-      const enquiry = row.original;
+      const member = row.original;
       return (
         <React.Fragment>
           <Checkbox
@@ -73,16 +73,15 @@ export const columns: ColumnDef<Enquiry>[] = [
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(enquiry.id)}
+                onClick={() => navigator.clipboard.writeText(member.id)}
               >
                 Follow up
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/gym/members/add-new-member/${enquiry.id}`}>
+                <Link href={`/gym/members/add-new-member/${member.id}`}>
                   Convert to member
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>Close enquiry</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </React.Fragment>

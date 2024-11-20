@@ -1,72 +1,91 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { randomPlanData } from "@/helpers/randomDataGenerator/plan";
+import { PlanCardTypes } from "@/helpers/Types/plan";
+import PlanCard from "@/components/gym/plan/PlanCard";
 
 const GymPlans = () => {
-  const randomPlanData = Array.from({ length: 10 }, () => ({
-    planDetails: {
-      planName: `Plan ${Math.random().toString(36).substring(7)}`, // Random alphanumeric name
-      category: "gym", // Default value
-      planType: ["Basic", "Premium", "Custom"][Math.floor(Math.random() * 3)], // Random from an array
-      planFor: ["Individual", "Group", "Corporate"][
-        Math.floor(Math.random() * 3)
-      ], // Random from an array
-      showPlanOnline: Math.random() > 0.5, // Random boolean
-      description: `This is a description for a ${
-        ["Basic", "Premium", "Custom"][Math.floor(Math.random() * 3)]
-      } plan.`,
-    },
-    packageDetails: {
-      packageType: ["Standard", "Custom", "Advanced"][
-        Math.floor(Math.random() * 3)
-      ], // Random from an array
-      durationInDays: Math.floor(Math.random() * 365) + 1, // Random duration between 1 and 365 days
-      sessions: Math.floor(Math.random() * 50) + 1, // Random sessions between 1 and 50
-      priceInRupees: Math.floor(Math.random() * 50000) + 1000, // Random price between 1000 and 50000
-      discountInRupees: Math.floor(Math.random() * 5000), // Random discount between 0 and 5000
-    },
-  }));
+  const [activePlans, setActivePlans] = useState<PlanCardTypes[]>(
+    randomPlanData.filter((plan) => plan.isActive)
+  );
+  const [inActivePlans, setInActivePlans] = useState<PlanCardTypes[]>(
+    randomPlanData.filter((plan) => !plan.isActive)
+  );
+
+  const [showPlansOf, setShowPlansOf] = useState<"active" | "inactive">(
+    "active"
+  );
+
   return (
-    <div className=" py-5 space-y-5">
+    <div className=" py-5 space-y-3">
       {/* Title  */}
-      <div className="flex justify-between w-full">
-        <span className="text-[1.7em] text-[#4a4a4a] ">Plans</span>
+      <div className="flex justify-between py-5">
+        <div className="space-x-[2em]">
+          <Button
+            className="uppercase w-[10em]"
+            variant={showPlansOf == "active" ? "default" : "outline"}
+            onClick={() => setShowPlansOf("active")}
+          >
+            Active Plans
+          </Button>
+          <Button
+            className="uppercase w-[10em]"
+            variant={showPlansOf == "inactive" ? "default" : "outline"}
+            onClick={() => setShowPlansOf("inactive")}
+          >
+            InActive Plans
+          </Button>
+          <Button
+            className="sr-only"
+            onClick={() => {
+              setInActivePlans([]);
+              setActivePlans([]);
+            }}
+          ></Button>
+        </div>
         <Link href="/gym/plans/add-new-plan">
           <Button variant="outline">Add New Plan</Button>
         </Link>
       </div>
 
-      {/* Plan Cards  */}
-      <div className="grid grid-cols-3 gap-[1.5em] w-full">
-        {randomPlanData.map((plan, index) => {
-          return (
-            <div key={index}>
-              <Card>
-                <CardHeader>
-                  <CardTitle>{plan.planDetails.planName}</CardTitle>
-                  <CardDescription>Card Description</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>Card Content</p>
-                </CardContent>
-                <CardFooter>
-                  <p>Card Footer</p>
-                </CardFooter>
-              </Card>
-            </div>
-          );
-        })}
-      </div>
+      {/* Active Plan Cards  */}
+      {showPlansOf === "active" && (
+        <div className="space-y-3">
+          <h2 className="text-[1.4em] text-[#1c8c61] border-b w-fit">
+            Active Plans
+          </h2>
+          <div className="grid grid-cols-3 gap-[1.5em] w-full">
+            {activePlans.map((plan, index) => {
+              return (
+                <div key={index}>
+                  <PlanCard plan={plan} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* In Active Plan Cards  */}
+      {showPlansOf === "inactive" && (
+        <div className="space-y-3">
+          <h2 className="text-[1.4em] text-[#de4a2c]  border-b w-fit">
+            Inactive Plans
+          </h2>
+          <div className="grid grid-cols-3 gap-[1.5em] w-full">
+            {inActivePlans.map((plan, index) => {
+              return (
+                <div key={index}>
+                  <PlanCard plan={plan} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
