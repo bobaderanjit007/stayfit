@@ -40,7 +40,7 @@ export type Enquiry = {
   updatedBy?: string;
 };
 
-export const columns: ColumnDef<Enquiry>[] = [
+export const enquiryColumns: ColumnDef<Enquiry>[] = [
   {
     id: "select",
     header: ({ table }) => (

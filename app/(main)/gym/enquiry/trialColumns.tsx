@@ -17,23 +17,26 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 
-export type Member = {
+export type Trial = {
   id: string;
   name: string;
   phone: number;
   gender: "male" | "female";
-  regnDate: Date; // registration date (save while form submission)
-  lastExpiry?: Date;
-  status: "active" | "inactive";
-  emailId?: string;
-  dob?: Date;
-  referralPoints?: string;
+  trialStartDate?: Date;
+  trialEndDate?: Date;
+  enqStatus: "enquiry" | "follow-up" | "converted" | "closed";
+  enqDate: Date; // enquiry date (save while form submission)
+  followUpDate?: Date;
+  remark?: string;
+  expectedJoining?: Date;
   assignedTo?: string;
+  referenceType?: "walk-in" | "reference" | "promotion" | "stayfit";
+  reference?: string;
   createdBy?: string;
-  lastUpdated?: Date; // last updated date and time (Save while enquiry updation)
+  updatedBy?: string;
 };
 
-export const columns: ColumnDef<Member>[] = [
+export const trialColumns: ColumnDef<Trial>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -47,7 +50,7 @@ export const columns: ColumnDef<Member>[] = [
       />
     ),
     cell: ({ row }) => {
-      const member = row.original;
+      const enquiry = row.original;
       return (
         <React.Fragment>
           <Checkbox
@@ -65,14 +68,18 @@ export const columns: ColumnDef<Member>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="p-0">
-                <Link
-                  href={`/gym/members/${member.id}/profile`}
-                  className="w-full p-2"
-                >
-                  View Profile
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(enquiry.id)}
+              >
+                Follow up
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={`/gym/members/${enquiry.id}/add-new-member`}>
+                  Convert to member
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem>Close enquiry</DropdownMenuItem>
+              <DropdownMenuItem>Change Trial Date</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </React.Fragment>
@@ -82,15 +89,8 @@ export const columns: ColumnDef<Member>[] = [
     enableHiding: false,
   },
   {
-    id: "sr no",
-    header: "Sr No.",
-    cell: ({ row }) => {
-      return row.index + 1;
-    },
-  },
-  {
     accessorKey: "name",
-    header: "Member name",
+    header: "Name",
   },
   {
     accessorKey: "phone",
@@ -116,40 +116,53 @@ export const columns: ColumnDef<Member>[] = [
     },
   },
   {
-    accessorKey: "regnDate",
-    header: "Registraion Date",
+    accessorKey: "trialStartDate",
+    header: "Trial Start Date",
   },
   {
-    accessorKey: "lastExpiry",
-    header: "Last Plan Expiry",
+    accessorKey: "trialEndDate",
+    header: "Trial End Date",
+  },
+  {
+    accessorKey: "enqStatus",
+    header: "Enquiry Status",
+  },
+  {
+    accessorKey: "enqDate",
+    header: "Enquiry Date",
+  },
+  {
+    accessorKey: "followUpDate",
+    header: "Follow Up Date",
+  },
+  {
+    accessorKey: "remark",
+    header: "Remark",
   },
 
   {
-    accessorKey: "status",
-    header: "Status",
-  },
-  {
-    accessorKey: "emailId",
-    header: "Email ID",
-  },
-  {
-    accessorKey: "dob",
-    header: "Date Of Birth",
-  },
-  {
-    accessorKey: "referralPoints",
-    header: "Referral Points",
+    accessorKey: "expectedJoining",
+    header: "Expected Joining",
   },
   {
     accessorKey: "assignedTo",
     header: "Assigned To",
   },
   {
+    accessorKey: "referenceType",
+    header: "Reference Type",
+  },
+  {
+    accessorKey: "reference",
+    header: "Reference",
+  },
+
+  {
     accessorKey: "createdBy",
     header: "Created By",
   },
   {
-    accessorKey: "lastUpdated",
-    header: "Last Updated",
+    accessorKey: "updatedBy",
+    header: "Updated By",
   },
 ];
