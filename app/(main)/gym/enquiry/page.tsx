@@ -2,13 +2,46 @@
 import { DataTable } from "@/components/gym/enquiry/data-table";
 import EnquiryTab from "@/components/gym/enquiry/EnquiryTab";
 import React, { useState } from "react";
-import { enquiryColumns, Enquiry } from "./enquiryColumns";
-import { Trial, trialColumns } from "./trialColumns";
+import { Enquiry, GetEnquiryColumns } from "./enquiryColumns";
+import { GetTrialColumns, Trial } from "./trialColumns";
+import EnquiryFollowUp from "@/components/gym/dialogs/EnquiryFollowUp";
+import TrialFollowUp from "@/components/gym/dialogs/TrialFollowUp";
+
+export type EnquiryFollowUpState = {
+  show: boolean;
+  enquiryData: Enquiry | null;
+};
+export type TrialFollowUpState = {
+  show: boolean;
+  trialData: Trial | null;
+};
 
 const GymEnquiry = () => {
   const [showView, setShowView] = useState<string>("enquiry");
+  const [enquiryFollowUp, setEnquiryFollowUp] = useState<EnquiryFollowUpState>({
+    show: false,
+    enquiryData: null,
+  });
+  const [trialFollowUp, setTrialFollowUp] = useState<TrialFollowUpState>({
+    show: false,
+    trialData: null,
+  });
+
+  const enquiryColumns = GetEnquiryColumns(setEnquiryFollowUp);
+  const trialColumns = GetTrialColumns(setTrialFollowUp);
   return (
     <div className="">
+      {/* Follow Up enquiry Dialog  */}
+      <EnquiryFollowUp
+        enquiryFollowUp={enquiryFollowUp}
+        setEnquiryFollowUp={setEnquiryFollowUp}
+      />
+      {/* Follow Up trial Dialog  */}
+      <TrialFollowUp
+        trialFollowUp={trialFollowUp}
+        setTrialFollowUp={setTrialFollowUp}
+      />
+
       {/* Tab  */}
       <EnquiryTab showView={showView} setShowView={setShowView} />
       {/* Filters  */}

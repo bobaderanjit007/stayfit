@@ -62,6 +62,30 @@ export const addEnquiryDefaultValues: z.infer<typeof addEnquiryFormSchema> = {
   pincode: "",
 };
 
+// Enquiry Follow Up Form
+export const enquirFollowUpFormSchema = z.object({
+  remark: z.string().min(1).max(500),
+  nextFollowUpDate: z.string().optional(),
+  time: z.string().optional(),
+  actionTaken: z.enum(["call", "sms", "mail", "visit", "closed", "free-trial"]),
+  trialStartDate: z.string().optional(),
+  trialEndDate: z.string().optional(),
+  userApproach: z.enum(["hot", "warm", "cold", "free-trial"]),
+});
+
+// Enquiry Follow Up Form Default values
+export const enquirFollowUpDefaultValues: z.infer<
+  typeof enquirFollowUpFormSchema
+> = {
+  remark: "",
+  nextFollowUpDate: "",
+  time: "",
+  trialStartDate: "",
+  trialEndDate: "",
+  actionTaken: "call",
+  userApproach: "warm",
+};
+
 // Member Form Schema
 export const memberFormSchema = z.object({
   personalDetails: z.object({

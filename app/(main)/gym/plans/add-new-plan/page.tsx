@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -14,7 +15,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -29,7 +29,7 @@ import {
   planFormSchema,
 } from "@/helpers/formSchemas/gymFormSchema";
 import { DataTable } from "@/components/gym/enquiry/data-table";
-import { getPlanColumns, PlanPackages } from "./planColumns";
+import { GetPlanColumns, PlanPackages } from "./planColumns";
 import { randomPlanPackages } from "@/helpers/randomDataGenerator/plan";
 
 const AddNewPlan = () => {
@@ -82,7 +82,7 @@ const AddNewPlan = () => {
     );
   };
 
-  const planColumns = getPlanColumns(handleRemovePackage);
+  const planColumns = GetPlanColumns(handleRemovePackage);
 
   return (
     <div className=" py-5 space-y-[1.5em]">

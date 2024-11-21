@@ -24,7 +24,7 @@ export type PlanPackages = {
   netPrice: number;
 };
 
-export const getPlanColumns = (
+export const GetPlanColumns = (
   handleRemovePackage: (id: string) => void
 ): ColumnDef<PlanPackages>[] => {
   const planColumns: ColumnDef<PlanPackages>[] = [

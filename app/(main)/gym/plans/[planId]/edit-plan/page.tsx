@@ -29,7 +29,7 @@ import {
   planFormSchema,
 } from "@/helpers/formSchemas/gymFormSchema";
 import { DataTable } from "@/components/gym/enquiry/data-table";
-import { getPlanColumns, PlanPackages } from "../../add-new-plan/planColumns";
+import { GetPlanColumns, PlanPackages } from "../../add-new-plan/planColumns";
 import { randomPlanPackages } from "@/helpers/randomDataGenerator/plan";
 
 const EditPlan = () => {
@@ -82,7 +82,7 @@ const EditPlan = () => {
     );
   };
 
-  const planColumns = getPlanColumns(handleRemovePackage);
+  const planColumns = GetPlanColumns(handleRemovePackage);
 
   return (
     <div className=" py-5 space-y-[1.5em]">
