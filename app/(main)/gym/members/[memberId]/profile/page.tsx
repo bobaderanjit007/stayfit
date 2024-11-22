@@ -1,7 +1,14 @@
+import MemberProfileCard from "@/components/gym/members/MemberProfileCard";
 import React from "react";
 
 const MemberProfile = () => {
-  return <div>MemberProfile</div>;
+  return (
+    <section>
+      <div>
+        <MemberProfileCard />
+      </div>
+    </section>
+  );
 };
 
 export default MemberProfile;

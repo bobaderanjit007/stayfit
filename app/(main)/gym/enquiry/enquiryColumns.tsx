@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { EnquiryFollowUpState } from "./page";
+import { CloseEnquiryState, EnquiryFollowUpState } from "./page";
 
 export type Enquiry = {
   id: string;
@@ -42,7 +42,8 @@ export type Enquiry = {
 };
 
 export const GetEnquiryColumns = (
-  setEnquiryFollowUp: Dispatch<SetStateAction<EnquiryFollowUpState>>
+  setEnquiryFollowUp: Dispatch<SetStateAction<EnquiryFollowUpState>>,
+  setCloseEnquiry: Dispatch<SetStateAction<CloseEnquiryState>>
 ) => {
   const enquiryColumns: ColumnDef<Enquiry>[] = [
     {
@@ -87,13 +88,26 @@ export const GetEnquiryColumns = (
                 >
                   Follow Up
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href={`/gym/members/${enquiry.id}/add-new-member`}>
+                <DropdownMenuItem className="p-0">
+                  <Link
+                    href={`/gym/members/${enquiry.id}/add-new-member`}
+                    className="w-full p-2"
+                  >
                     Convert to member
                   </Link>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem>Close enquiry</DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    setCloseEnquiry({
+                      show: true,
+                      enquiryId: enquiry.id,
+                      name: enquiry.name,
+                    })
+                  }
+                >
+                  Close enquiry
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </React.Fragment>

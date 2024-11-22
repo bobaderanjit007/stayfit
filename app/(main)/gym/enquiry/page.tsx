@@ -6,6 +6,16 @@ import { Enquiry, GetEnquiryColumns } from "./enquiryColumns";
 import { GetTrialColumns, Trial } from "./trialColumns";
 import EnquiryFollowUp from "@/components/gym/dialogs/EnquiryFollowUp";
 import TrialFollowUp from "@/components/gym/dialogs/TrialFollowUp";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 export type EnquiryFollowUpState = {
   show: boolean;
@@ -14,6 +24,13 @@ export type EnquiryFollowUpState = {
 export type TrialFollowUpState = {
   show: boolean;
   trialData: Trial | null;
+};
+
+export type CloseEnquiryState = {
+  show: boolean;
+  enquiryId: string;
+  name: string;
+  remark?: string;
 };
 
 const GymEnquiry = () => {
@@ -26,9 +43,15 @@ const GymEnquiry = () => {
     show: false,
     trialData: null,
   });
+  const [closeEnquiry, setCloseEnquiry] = useState<CloseEnquiryState>({
+    show: false,
+    enquiryId: "",
+    name: "",
+    remark: "",
+  });
 
-  const enquiryColumns = GetEnquiryColumns(setEnquiryFollowUp);
-  const trialColumns = GetTrialColumns(setTrialFollowUp);
+  const enquiryColumns = GetEnquiryColumns(setEnquiryFollowUp, setCloseEnquiry);
+  const trialColumns = GetTrialColumns(setTrialFollowUp, setCloseEnquiry);
   return (
     <div className="">
       {/* Follow Up enquiry Dialog  */}
@@ -41,6 +64,49 @@ const GymEnquiry = () => {
         trialFollowUp={trialFollowUp}
         setTrialFollowUp={setTrialFollowUp}
       />
+
+      {/* Close Enquiry Dialog */}
+      <Dialog
+        open={closeEnquiry.show}
+        onOpenChange={() => {
+          setCloseEnquiry({
+            show: false,
+            enquiryId: "",
+            name: "",
+            remark: "",
+          });
+        }}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Close Enquiry</DialogTitle>
+          </DialogHeader>
+          <DialogDescription>
+            {" "}
+            <span className="text-blue-400 text-[1.1em]">{closeEnquiry.name}</span>
+          </DialogDescription>
+          <Label>Remark *</Label>
+          <Textarea placeholder="Remark"></Textarea>
+
+          <div className="space-x-3 flex justify-end">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setCloseEnquiry({
+                  show: false,
+                  enquiryId: "",
+                  name: "",
+                  remark: "",
+                });
+              }}
+            >
+              Cancel
+            </Button>
+            <Button type="button">Close Enquiry</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Tab  */}
       <EnquiryTab showView={showView} setShowView={setShowView} />

@@ -78,7 +78,7 @@ const EnquiryFollowUp = ({
           >
             {/* Plan Details  */}
             <div>
-              <span className="text-blue-400">
+              <span className="text-blue-400  text-[1.1em]">
                 {enquiryFollowUp?.enquiryData?.name}
               </span>
               <div className="grid grid-cols-2 gap-[0.8em]">

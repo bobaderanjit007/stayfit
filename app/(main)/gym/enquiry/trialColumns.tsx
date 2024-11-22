@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { TrialFollowUpState } from "./page";
+import { CloseEnquiryState, TrialFollowUpState } from "./page";
 
 export type Trial = {
   id: string;
@@ -38,7 +38,8 @@ export type Trial = {
 };
 
 export const GetTrialColumns = (
-  setEnquiryFollowUp: Dispatch<SetStateAction<TrialFollowUpState>>
+  setEnquiryFollowUp: Dispatch<SetStateAction<TrialFollowUpState>>,
+  setCloseEnquiry: Dispatch<SetStateAction<CloseEnquiryState>>
 ) => {
   const trialColumns: ColumnDef<Trial>[] = [
     {
@@ -83,12 +84,25 @@ export const GetTrialColumns = (
                 >
                   Follow Up
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href={`/gym/members/${trial.id}/add-new-member`}>
+                <DropdownMenuItem className="p-0">
+                  <Link
+                    href={`/gym/members/${trial.id}/add-new-member`}
+                    className="w-full p-2"
+                  >
                     Convert to member
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>Close enquiry</DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    setCloseEnquiry({
+                      show: true,
+                      enquiryId: trial.id,
+                      name: trial.name,
+                    })
+                  }
+                >
+                  Close enquiry
+                </DropdownMenuItem>
                 <DropdownMenuItem>Change Trial Date</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
