@@ -11,7 +11,6 @@ const GymEnquiry = () => {
     <div className="">
       {/* Tab  */}
       <MembersTab showView={showView} setShowView={setShowView} />
-      {/* Filters  */}
 
       {/* Table  */}
       <div className="max-w-[80vw]">
