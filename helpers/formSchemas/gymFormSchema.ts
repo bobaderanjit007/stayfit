@@ -221,7 +221,7 @@ export const staffFormSchema = z.object({
   email: z.string().email("Invalid email format"),
   dateOfJoining: z.string().min(1, "Date of Joining is required"),
   dateOfBirth: z.string().optional(),
-  gender: z.enum(["Male", "Female", "Other"]),
+  gender: z.string().optional(),
 
   // Shift Details
   shifts: z
@@ -275,7 +275,7 @@ export const staffDefaultValues = {
   email: "",
   dateOfJoining: "",
   dateOfBirth: "",
-  gender: "Male",
+  gender: "male",
 
   // Shift Details
   shifts: [
@@ -302,4 +302,115 @@ export const staffDefaultValues = {
   roomNumber: "",
   country: "",
   pincode: "",
+};
+
+// Equipment Details
+export const equipmentFormSchema = z.object({
+  equipmentName: z.string().min(1, "Equipment Name is required"),
+  equipmentType: z.string().optional(),
+  equipmentNumber: z.string().optional(),
+  quantity: z.number().min(1, "Quantity must be at least 1").optional(),
+  color: z.string().optional(),
+  purpose: z.string().optional(),
+  purchaseDate: z.string().optional(), // Use Date or string based on your setup
+  vendorName: z.string().optional(),
+  cost: z.number().optional(),
+  nextServiceDate: z.string().optional(), // Use Date or string based on your setup
+  manufacturerName: z.string().optional(),
+  equipmentStatus: z.string().optional(),
+  category: z.string().optional(),
+  description: z.string().optional(),
+  length: z.number().optional(),
+  width: z.number().optional(),
+  height: z.number().optional(),
+  weight: z.number().optional(),
+  image: z.any().optional(), // Optional image upload
+});
+
+export const equipmentDefaultValues = {
+  equipmentName: "",
+  equipmentType: "",
+  equipmentNumber: "",
+  quantity: 1,
+  color: "",
+  purpose: "",
+  purchaseDate: "",
+  vendorName: "",
+  cost: 0,
+  nextServiceDate: "",
+  manufacturerName: "",
+  equipmentStatus: "",
+  category: "",
+  description: "",
+  length: 0,
+  width: 0,
+  height: 0,
+  weight: 0,
+  image: null,
+};
+
+// Custom Bill
+export const customBillFormSchema = z.object({
+  phoneNumber: z
+    .string()
+    .min(10, "Phone Number must be at least 10 digits")
+    .optional(),
+  nameOnBill: z.string().optional(),
+  emailAddress: z.string().email("Invalid email address").optional(),
+  billFor: z.string().min(1, "Bill For is required"),
+  billAmount: z.number().positive("Bill Amount must be a positive number"),
+  note: z.string().optional(),
+  address: z.string().optional(),
+  locality: z.string().optional(),
+  city: z.string().optional(),
+  state: z.string().optional(),
+});
+
+export const customBillDefaultValues = {
+  phoneNumber: "",
+  nameOnBill: "",
+  emailAddress: "",
+  billFor: "",
+  billAmount: 0,
+  note: "",
+  address: "",
+  locality: "",
+  city: "",
+  state: "",
+};
+
+// Service
+export const serviceFormSchema = z.object({
+  serviceName: z.string().min(1, "Service Name is required"),
+  type: z.string().min(1, "Type is required"),
+  price: z.number().positive("Price must be a positive number"),
+  status: z.string().min(1, "Status is required"),
+  description: z.string().optional(),
+});
+
+export const serviceDefaultValues = {
+  serviceName: "",
+  type: "",
+  price: 0,
+  status: "",
+  description: "",
+};
+
+// Product
+export const productFormSchema = z.object({
+  productName: z.string().min(1, "Product Name is required"),
+  category: z.string().min(1, "Category is required"),
+  quantity: z.number().positive("Quantity must be a positive number"),
+  status: z.string().min(1, "Status is required"),
+  price: z.number().positive("Price must be a positive number"),
+  description: z.string().optional(),
+});
+
+export const productDefaultValues = {
+  productName: "",
+  category: "",
+  quantity: 0,
+  status: "",
+  price: 0,
+  description: "",
 };

@@ -30,10 +30,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import router from "next/router";
 import ImageUploader from "@/components/ui/image-uploader";
+import { useRouter } from "next/navigation";
 
 const AddExpense = () => {
+  const router = useRouter();
   const addExpenseForm = useForm<z.infer<typeof expenseFormSchema>>({
     resolver: zodResolver(expenseFormSchema),
     defaultValues: expenseDefaultValues,

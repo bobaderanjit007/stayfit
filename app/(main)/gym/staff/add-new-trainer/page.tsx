@@ -44,7 +44,7 @@ const AddNewTrainer = () => {
     <div>
       <ContentTitle title="Add New Trainer" />
 
-      {/* Add Member Form  */}
+      {/* Add Trainer Form  */}
       <Form {...addTrainerForm}>
         <form
           onSubmit={addTrainerForm.handleSubmit(onSubmit)}
@@ -339,66 +339,38 @@ const AddNewTrainer = () => {
             </div>
           </div>
 
-          {/* Plan Details  */}
-          {/* <div>
-            <span className="text-blue-400">Plan Details</span>
+          {/* Shift Details  */}
+          <div>
+            <span className="text-blue-400">Shift Details</span>
             <div className="grid grid-cols-4 gap-[0.8em]">
               <FormField
                 control={addTrainerForm.control}
-                name="plan"
+                name="shifts.0.inTime"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Select Plan *</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Plan" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="walk-in">Walk in</SelectItem>
-                          <SelectItem value="reference">Reference</SelectItem>
-                          <SelectItem value="promotion">Promotion</SelectItem>
-                          <SelectItem value="stayfit">Stayfit</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={addTrainerForm.control}
-                name="package"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Package *</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Package" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="walk-in">Walk in</SelectItem>
-                          <SelectItem value="reference">Reference</SelectItem>
-                          <SelectItem value="promotion">Promotion</SelectItem>
-                          <SelectItem value="stayfit">Stayfit</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={addTrainerForm.control}
-                name="price"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Price</FormLabel>
+                    <FormLabel>Shift 1 - In Time</FormLabel>
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        placeholder="Price"
+                        placeholder="In Time"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={addTrainerForm.control}
+                name="shifts.0.outTime"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Shift 1 - Out Time</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Out Time"
                         {...field}
                       />
                     </FormControl>
@@ -408,14 +380,31 @@ const AddNewTrainer = () => {
               />
               <FormField
                 control={addTrainerForm.control}
-                name="negotiatedAmount"
+                name="shifts.1.inTime"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Negotiated Amount</FormLabel>
+                    <FormLabel>Shift 2 - In Time</FormLabel>
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        placeholder="Negotiated Amount"
+                        placeholder="In Time"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addTrainerForm.control}
+                name="shifts.1.outTime"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Shift 2 - Out Time</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Out Time"
                         {...field}
                       />
                     </FormControl>
@@ -424,10 +413,52 @@ const AddNewTrainer = () => {
                 )}
               />
             </div>
-          </div> */}
+          </div>
+
+          {/* Working Hours  */}
+          <div>
+            <span className="text-blue-400">Working Hours</span>
+            <div className="grid grid-cols-4 gap-[0.8em]">
+              <FormField
+                control={addTrainerForm.control}
+                name="workingHours"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Working Hours</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Working Hours"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={addTrainerForm.control}
+                name="holidays"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Holidays</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Holidays"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
 
           {/* Address Details */}
-          {/* <div>
+          <div>
             <span className="text-blue-400">Address Details</span>
             <div className="grid grid-cols-4 gap-[0.8em]">
               <div className="col-span-2">
@@ -452,14 +483,14 @@ const AddNewTrainer = () => {
               <div className="col-span-2">
                 <FormField
                   control={addTrainerForm.control}
-                  name="address"
+                  name="roomNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Address</FormLabel>
+                      <FormLabel>Room No./FLR No./Building No.</FormLabel>
                       <FormControl>
                         <Input
                           autoComplete="off"
-                          placeholder="Address"
+                          placeholder="Room No./FLR No./Building No."
                           {...field}
                         />
                       </FormControl>
@@ -537,7 +568,7 @@ const AddNewTrainer = () => {
                 )}
               />
             </div>
-          </div> */}
+          </div>
 
           <div className="space-x-2 flex justify-end">
             <Button
