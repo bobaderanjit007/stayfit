@@ -1,10 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { IoCaretBackCircleOutline } from "react-icons/io5";
+import ContentTitle from "@/components/setup/ContentTitle";
+import {
+  trainerDefaultValues,
+  trainerFormSchema,
+} from "@/helpers/formSchemas/gymFormSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -23,62 +26,42 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  addEnquiryFormSchema,
-  addEnquiryDefaultValues,
-} from "@/helpers/formSchemas/memberFromSchema";
-import { FaRegEye } from "react-icons/fa";
-import { RiEyeCloseFill } from "react-icons/ri";
+import { useRouter } from "next/navigation";
+import { DatePicker } from "@/components/ui/date-picker";
+// import ImageUploader from "@/components/ui/image-uploader";
 
-const AddNewMember = () => {
-  const [showPD, setShowPD] = useState<boolean>(true);
+const AddNewTrainer = () => {
   const router = useRouter();
-
-  const addEnquiryForm = useForm<z.infer<typeof addEnquiryFormSchema>>({
-    resolver: zodResolver(addEnquiryFormSchema),
-    defaultValues: addEnquiryDefaultValues,
+  const addTrainerForm = useForm<z.infer<typeof trainerFormSchema>>({
+    resolver: zodResolver(trainerFormSchema),
+    defaultValues: trainerDefaultValues,
   });
 
-  function onSubmit(values: z.infer<typeof addEnquiryFormSchema>) {
-    router.push("/gym/dashboard");
+  function onSubmit(values: z.infer<typeof trainerFormSchema>) {
     console.log(values);
   }
   return (
     <div>
-      {/* Form Title  */}
-      <div className="flex items-center text-[#4a4a4a] justify-between py-5">
-        <IoCaretBackCircleOutline
-          className="text-[1.8rem] cursor-pointer"
-          onClick={() => router.back()}
-        />
-        <span className="text-[1.7em]">Add New Member</span>
-        <span></span>
-      </div>
+      <ContentTitle title="Add New Trainer" />
 
       {/* Add Member Form  */}
-      <Form {...addEnquiryForm}>
+      <Form {...addTrainerForm}>
         <form
-          onSubmit={addEnquiryForm.handleSubmit(onSubmit)}
+          onSubmit={addTrainerForm.handleSubmit(onSubmit)}
           className="space-y-8"
         >
           {/* Personal Details  */}
           <div>
             <span className="text-blue-400 flex items-center space-x-2 ">
               <span>Personal Details</span>{" "}
-              <span onClick={() => setShowPD(!showPD)}>
-                {showPD ? (
-                  <FaRegEye className="cursor-pointer" />
-                ) : (
-                  <RiEyeCloseFill className="cursor-pointer" />
-                )}{" "}
-              </span>
             </span>
-            <div
-              className={`grid grid-cols-4 gap-[0.8em] ${!showPD && "hidden"}`}
-            >
+            <div className={`grid grid-cols-4 gap-[0.8em] `}>
+              {/* <div className="col-span-2 row-span-4">
+                <ImageUploader title="" />
+              </div> */}
               <div className="col-span-2">
                 <FormField
-                  control={addEnquiryForm.control}
+                  control={addTrainerForm.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
@@ -97,7 +80,7 @@ const AddNewMember = () => {
               </div>
               <div className="col-span-2">
                 <FormField
-                  control={addEnquiryForm.control}
+                  control={addTrainerForm.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
@@ -114,14 +97,16 @@ const AddNewMember = () => {
                   )}
                 />
               </div>
+
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="mobileNumber"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Mobile Number *</FormLabel>
                     <FormControl>
                       <Input
+                        type="number"
                         autoComplete="off"
                         placeholder="Mobile Number"
                         {...field}
@@ -131,43 +116,23 @@ const AddNewMember = () => {
                   </FormItem>
                 )}
               />
+
               <FormField
-                control={addEnquiryForm.control}
-                name="mobileNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Date Of Birth</FormLabel>
+                control={addTrainerForm.control}
+                name="dateOfBirth"
+                render={() => (
+                  <FormItem className="flex flex-col justify-between">
+                    <FormLabel className="mt-[0.4em]">Date Of Birth</FormLabel>
                     <FormControl>
-                      <Input
-                        autoComplete="off"
-                        placeholder="Date Of Birth"
-                        {...field}
-                      />
+                      <DatePicker ButtonClassName="w-[20em" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {/* <FormField
-                control={addEnquiryForm.control}
-                name="dateOfBirth"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Date Of Birth</FormLabel>
-                    <FormControl>
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={(date) => field.onChange(date)}
-                        className="rounded-md border"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> */}
+
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="gender"
                 render={({ field }) => (
                   <FormItem>
@@ -191,11 +156,61 @@ const AddNewMember = () => {
                 )}
               />
               <FormField
-                control={addEnquiryForm.control}
-                name="reference"
+                control={addTrainerForm.control}
+                name="dateOfJoining"
+                render={() => (
+                  <FormItem className="flex flex-col justify-between">
+                    <FormLabel className="mt-[0.4em]">
+                      Date Of Joining
+                    </FormLabel>
+                    <FormControl>
+                      <DatePicker ButtonClassName="w-[20em" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addTrainerForm.control}
+                name="specialization"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Reference *</FormLabel>
+                    <FormLabel>Specialization (Saperate By Commas) *</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Specialization"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addTrainerForm.control}
+                name="experience"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Experience (In Months) *</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        type="number"
+                        placeholder="Experience"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addTrainerForm.control}
+                name="category"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Category</FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={field.onChange}
@@ -205,10 +220,34 @@ const AddNewMember = () => {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="walk-in">Walk in</SelectItem>
-                          <SelectItem value="reference">Reference</SelectItem>
-                          <SelectItem value="promotion">Promotion</SelectItem>
-                          <SelectItem value="stayfit">Stayfit</SelectItem>
+                          <SelectItem value="gym">Gym</SelectItem>
+                          <SelectItem value="yoga">Yoga</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addTrainerForm.control}
+                name="trainerFor"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Trainer For </FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="male">Male</SelectItem>
+                          <SelectItem value="female">Female</SelectItem>
+                          <SelectItem value="both">Both</SelectItem>
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -219,31 +258,79 @@ const AddNewMember = () => {
             </div>
           </div>
 
-          {/* Assign To Staff  */}
+          {/* Salary Details  */}
           <div>
-            <span className="text-blue-400">Assign To Staff</span>
-            <div className="grid grid-cols-4 gap-[0.8em]">
+            <span className="text-blue-400 flex items-center space-x-2 ">
+              <span>Salary Details</span>{" "}
+            </span>
+            <div className={`grid grid-cols-4 gap-[0.8em] `}>
               <FormField
-                control={addEnquiryForm.control}
-                name="staffName"
+                control={addTrainerForm.control}
+                name="salary"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Staff Name *</FormLabel>
+                    <FormLabel>Salary ₹</FormLabel>
                     <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Staff Name" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="walk-in">Satish</SelectItem>
-                          <SelectItem value="reference">Vaibhav</SelectItem>
-                          <SelectItem value="promotion">Avinash</SelectItem>
-                          <SelectItem value="stayfit">Jayant</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Input
+                        autoComplete="off"
+                        type="number"
+                        placeholder="Salary ₹"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addTrainerForm.control}
+                name="absentDeduction"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Absenty Deduction in ₹</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        type="number"
+                        placeholder="Absenty Deduction in ₹"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addTrainerForm.control}
+                name="lateMarkAllowedPerMonth"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Late Mark Allowed Per Month</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        type="number"
+                        placeholder="Late Mark Allowed Per Month"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addTrainerForm.control}
+                name="lateComingDeduction"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Late Coming Deduction</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        type="number"
+                        placeholder="Late Coming Deduction"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -253,11 +340,11 @@ const AddNewMember = () => {
           </div>
 
           {/* Plan Details  */}
-          <div>
+          {/* <div>
             <span className="text-blue-400">Plan Details</span>
             <div className="grid grid-cols-4 gap-[0.8em]">
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="plan"
                 render={({ field }) => (
                   <FormItem>
@@ -280,7 +367,7 @@ const AddNewMember = () => {
                 )}
               />
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="package"
                 render={({ field }) => (
                   <FormItem>
@@ -303,7 +390,7 @@ const AddNewMember = () => {
                 )}
               />
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="price"
                 render={({ field }) => (
                   <FormItem>
@@ -320,7 +407,7 @@ const AddNewMember = () => {
                 )}
               />
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="negotiatedAmount"
                 render={({ field }) => (
                   <FormItem>
@@ -337,15 +424,15 @@ const AddNewMember = () => {
                 )}
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Address Details */}
-          <div>
+          {/* <div>
             <span className="text-blue-400">Address Details</span>
             <div className="grid grid-cols-4 gap-[0.8em]">
               <div className="col-span-2">
                 <FormField
-                  control={addEnquiryForm.control}
+                  control={addTrainerForm.control}
                   name="searchAddress"
                   render={({ field }) => (
                     <FormItem>
@@ -364,7 +451,7 @@ const AddNewMember = () => {
               </div>
               <div className="col-span-2">
                 <FormField
-                  control={addEnquiryForm.control}
+                  control={addTrainerForm.control}
                   name="address"
                   render={({ field }) => (
                     <FormItem>
@@ -382,7 +469,7 @@ const AddNewMember = () => {
                 />
               </div>
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="locality"
                 render={({ field }) => (
                   <FormItem>
@@ -399,7 +486,7 @@ const AddNewMember = () => {
                 )}
               />
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="state"
                 render={({ field }) => (
                   <FormItem>
@@ -416,7 +503,7 @@ const AddNewMember = () => {
                 )}
               />
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="country"
                 render={({ field }) => (
                   <FormItem>
@@ -433,7 +520,7 @@ const AddNewMember = () => {
                 )}
               />
               <FormField
-                control={addEnquiryForm.control}
+                control={addTrainerForm.control}
                 name="pincode"
                 render={({ field }) => (
                   <FormItem>
@@ -450,7 +537,7 @@ const AddNewMember = () => {
                 )}
               />
             </div>
-          </div>
+          </div> */}
 
           <div className="space-x-2 flex justify-end">
             <Button
@@ -468,4 +555,4 @@ const AddNewMember = () => {
   );
 };
 
-export default AddNewMember;
+export default AddNewTrainer;

@@ -9,7 +9,7 @@ const GymBatches = () => {
       <div className="flex justify-between">
         <span className="text-regular text-2xl flex items-end">Batches</span>
         <Link href="/gym/batches/add-new-batch">
-          <Button>Add New Batch</Button>
+          <Button variant="outline">Add New Batch</Button>
         </Link>
       </div>
     </div>

@@ -98,6 +98,8 @@ const ImageUploader: React.FC<{ title: string }> = ({ title }) => {
                     <Image
                       src={preview as string}
                       alt="Uploaded image"
+                      width={300}
+                      height={400}
                       className="max-h-[400px] rounded-lg"
                     />
                   )}

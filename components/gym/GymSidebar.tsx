@@ -55,7 +55,7 @@ const menuItems = [
     itemLoc: "/gym/plans",
     inprocess: true,
   },
-  { name: "Staff", icon: <MdPeople />, itemLoc: "/gym/staff" },
+  { name: "Staff", icon: <MdPeople />, itemLoc: "/gym/staff", inprocess: true },
   // {
   //   name: "Appointments",
   //   icon: <FaCalendarCheck />,

@@ -8,8 +8,8 @@ const GymExpenses = () => {
     <div>
       <div className="flex justify-between">
         <span className="text-regular text-2xl flex items-end">Expenses</span>
-        <Link href="/gym/expenses/add-expense">
-          <Button>Add Expense</Button>
+        <Link href="/gym/expenses/add-new-expense">
+          <Button variant="outline">Add New Expense</Button>
         </Link>
       </div>
     </div>

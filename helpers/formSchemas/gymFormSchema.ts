@@ -117,3 +117,189 @@ export const expenseDefaultValues = {
   paymentDetails: "",
   balance: 0,
 };
+
+// Trainer
+export const trainerFormSchema = z.object({
+  // Personal Details
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email format"),
+  mobileNumber: z.string().min(10, "Invalid mobile number").optional(),
+  dateOfJoining: z.string().optional(),
+  dateOfBirth: z.string().optional(),
+  gender: z.string().optional(),
+  specialization: z.string().optional(),
+  experience: z.number().min(0, "Experience must be a positive number"),
+  category: z.string().optional(),
+  trainerFor: z.string().optional(),
+
+  // Salary Details
+  salary: z.number().min(0, "Salary must be a positive number"),
+  absentDeduction: z
+    .number()
+    .min(0, "Absent deduction must be a positive number")
+    .optional(),
+  lateMarkAllowedPerMonth: z
+    .number()
+    .min(0, "Late mark allowed must be a positive number")
+    .optional(),
+  lateComingDeduction: z
+    .number()
+    .min(0, "Late coming deduction must be a positive number")
+    .optional(),
+
+  // Shift Details
+  shifts: z
+    .array(
+      z.object({
+        inTime: z.string().optional(),
+        outTime: z.string().optional(),
+      })
+    )
+    .optional(),
+
+  // Working Hours
+  workingHours: z.string().optional(),
+  holidays: z.string().optional(),
+
+  // Address Details
+  searchAddress: z.string().optional(),
+  locality: z.string().optional(),
+  state: z.string().optional(),
+  roomNumber: z.string().optional(),
+  country: z.string().optional(),
+  pincode: z.string().optional(),
+});
+
+export const trainerDefaultValues = {
+  // Personal Details
+  name: "",
+  email: "",
+  mobileNumber: "",
+  dateOfJoining: "",
+  dateOfBirth: "",
+  gender: "male",
+  specialization: "",
+  experience: 0,
+  category: "gym",
+  trainerFor: "both",
+
+  // Salary Details
+  salary: 0,
+  absentDeduction: 0,
+  lateMarkAllowedPerMonth: 0,
+  lateComingDeduction: 0,
+
+  // Shift Details
+  shifts: [
+    { inTime: "", outTime: "" }, // Shift 1
+    { inTime: "", outTime: "" }, // Shift 2
+  ],
+
+  // Working Hours
+  workingHours: "",
+  holidays: "",
+
+  // Address Details
+  searchAddress: "",
+  locality: "",
+  state: "",
+  roomNumber: "",
+  country: "",
+  pincode: "",
+};
+
+// Staff
+export const staffFormSchema = z.object({
+  // Personal Details
+  centre: z.string().min(1, "Centre is required"),
+  branch: z.string().min(1, "Branch is required"),
+  name: z.string().min(1, "Name is required"),
+  mobileNumber: z
+    .string()
+    .regex(/^\d{10}$/, "Mobile number must be 10 digits")
+    .min(1, "Mobile number is required"),
+  email: z.string().email("Invalid email format"),
+  dateOfJoining: z.string().min(1, "Date of Joining is required"),
+  dateOfBirth: z.string().optional(),
+  gender: z.enum(["Male", "Female", "Other"]),
+
+  // Shift Details
+  shifts: z
+    .array(
+      z.object({
+        inTime: z.string().optional(),
+        outTime: z.string().optional(),
+      })
+    )
+    .length(2), // Assuming 2 shifts: Shift 01 and Shift 02
+  role: z.string().min(1, "Role is required"),
+  workingHours: z.string().optional(),
+  holidays: z.string().optional(),
+  allowLogin: z.boolean(),
+  allowAppLogin: z.boolean(),
+
+  // Salary Details
+  salary: z.number().min(0, "Salary must be a positive number"),
+  absentDeduction: z
+    .number()
+    .min(0, "Absent deduction must be positive")
+    .optional(),
+  lateMarkAllowed: z
+    .number()
+    .min(0, "Late mark allowed must be positive")
+    .optional(),
+  lateMarkDeduction: z
+    .number()
+    .min(0, "Late mark deduction must be positive")
+    .optional(),
+  leavesAllowedInMonth: z
+    .number()
+    .min(0, "Leaves allowed must be positive")
+    .optional(),
+
+  // Address Details
+  searchAddress: z.string().optional(),
+  locality: z.string().optional(),
+  state: z.string().optional(),
+  roomNumber: z.string().optional(),
+  country: z.string().optional(),
+  pincode: z.string().optional(),
+});
+
+export const staffDefaultValues = {
+  // Personal Details
+  centre: "",
+  branch: "",
+  name: "",
+  mobileNumber: "",
+  email: "",
+  dateOfJoining: "",
+  dateOfBirth: "",
+  gender: "Male",
+
+  // Shift Details
+  shifts: [
+    { inTime: "", outTime: "" }, // Shift 01
+    { inTime: "", outTime: "" }, // Shift 02
+  ],
+  role: "",
+  workingHours: "",
+  holidays: "",
+  allowLogin: false,
+  allowAppLogin: false,
+
+  // Salary Details
+  salary: 0,
+  absentDeduction: 0,
+  lateMarkAllowed: 0,
+  lateMarkDeduction: 0,
+  leavesAllowedInMonth: 0,
+
+  // Address Details
+  searchAddress: "",
+  locality: "",
+  state: "",
+  roomNumber: "",
+  country: "",
+  pincode: "",
+};
