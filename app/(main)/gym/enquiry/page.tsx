@@ -4,18 +4,10 @@ import EnquiryTab from "@/components/gym/enquiry/EnquiryTab";
 import React, { useState } from "react";
 import { Enquiry, GetEnquiryColumns } from "./enquiryColumns";
 import { GetTrialColumns, Trial } from "./trialColumns";
-import EnquiryFollowUp from "@/components/gym/dialogs/EnquiryFollowUp";
-import TrialFollowUp from "@/components/gym/dialogs/TrialFollowUp";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import EnquiryFollowUp from "@/components/gym/dialogs/enquiry/EnquiryFollowUp";
+import TrialFollowUp from "@/components/gym/dialogs/enquiry/TrialFollowUp";
+import ChangeTrailsDate from "@/components/gym/dialogs/enquiry/ChangeTrailsDate";
+import CloseEnquiry from "@/components/gym/dialogs/enquiry/CloseEnquiry";
 
 export type EnquiryFollowUpState = {
   show: boolean;
@@ -31,6 +23,14 @@ export type CloseEnquiryState = {
   enquiryId: string;
   name: string;
   remark?: string;
+};
+
+export type ChangeTrialDateState = {
+  show: boolean;
+  enquiryId: string;
+  name: string;
+  trialStartDate?: Date | null;
+  trialEndDate?: Date | null;
 };
 
 const GymEnquiry = () => {
@@ -50,8 +50,20 @@ const GymEnquiry = () => {
     remark: "",
   });
 
+  const [changeTrailDate, setChangeTrialDate] = useState<ChangeTrialDateState>({
+    show: false,
+    enquiryId: "",
+    name: "",
+    trialStartDate: null,
+    trialEndDate: null,
+  });
+
   const enquiryColumns = GetEnquiryColumns(setEnquiryFollowUp, setCloseEnquiry);
-  const trialColumns = GetTrialColumns(setTrialFollowUp, setCloseEnquiry);
+  const trialColumns = GetTrialColumns(
+    setTrialFollowUp,
+    setCloseEnquiry,
+    setChangeTrialDate
+  );
   return (
     <div className="">
       {/* Follow Up enquiry Dialog  */}
@@ -65,52 +77,20 @@ const GymEnquiry = () => {
         setTrialFollowUp={setTrialFollowUp}
       />
 
-      {/* Close Enquiry Dialog */}
-      <Dialog
-        open={closeEnquiry.show}
-        onOpenChange={() => {
-          setCloseEnquiry({
-            show: false,
-            enquiryId: "",
-            name: "",
-            remark: "",
-          });
-        }}
-      >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Close Enquiry</DialogTitle>
-          </DialogHeader>
-          <DialogDescription>
-            {" "}
-            <span className="text-blue-400 text-[1.1em]">{closeEnquiry.name}</span>
-          </DialogDescription>
-          <Label>Remark *</Label>
-          <Textarea placeholder="Remark"></Textarea>
+      {/* Change Trial Date Dialog  */}
+      <ChangeTrailsDate
+        changeTrailDate={changeTrailDate}
+        setChangeTrialDate={setChangeTrialDate}
+      />
 
-          <div className="space-x-3 flex justify-end">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => {
-                setCloseEnquiry({
-                  show: false,
-                  enquiryId: "",
-                  name: "",
-                  remark: "",
-                });
-              }}
-            >
-              Cancel
-            </Button>
-            <Button type="button">Close Enquiry</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Close Enquiry Dialog */}
+      <CloseEnquiry
+        closeEnquiry={closeEnquiry}
+        setCloseEnquiry={setCloseEnquiry}
+      />
 
       {/* Tab  */}
       <EnquiryTab showView={showView} setShowView={setShowView} />
-      {/* Filters  */}
 
       {/* Table  */}
       <div className="max-w-[80vw]">

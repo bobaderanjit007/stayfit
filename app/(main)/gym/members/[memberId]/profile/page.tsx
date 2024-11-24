@@ -16,7 +16,7 @@ export type ShowProfileTabProps =
 
 const MemberProfile = () => {
   const [showProfileTab, setShowProfileTab] =
-    useState<ShowProfileTabProps>("profile");
+    useState<ShowProfileTabProps>("subscriptions");
   return (
     <section className="pb-6">
       <ContentTitle title="Member Profile" />

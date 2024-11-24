@@ -42,7 +42,12 @@ const menuItems = [
     itemLoc: "/gym/members",
     inprocess: true,
   },
-  { name: "Batches", icon: <MdPeople />, itemLoc: "/gym/batches" },
+  {
+    name: "Batches",
+    icon: <MdPeople />,
+    itemLoc: "/gym/batches",
+    inprocess: true,
+  },
   { name: "Attendance", icon: <MdEvent />, itemLoc: "/gym/attendance" },
   {
     name: "Plans",
@@ -62,7 +67,12 @@ const menuItems = [
   //   icon: <IoMdNotificationsOutline />,
   //   itemLoc: "/gym/communications",
   // },
-  { name: "Expenses", icon: <FaMoneyBillWave />, itemLoc: "/gym/expenses" },
+  {
+    name: "Expenses",
+    icon: <FaMoneyBillWave />,
+    itemLoc: "/gym/expenses",
+    inprocess: true,
+  },
   { name: "Accounts", icon: <GiPayMoney />, itemLoc: "/gym/accounts" },
   // {
   //   name: "Add On Services",

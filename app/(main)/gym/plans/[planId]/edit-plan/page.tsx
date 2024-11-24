@@ -305,7 +305,7 @@ const EditPlan = () => {
                         <Input
                           autoComplete="off"
                           readOnly={packageName !== "custom"}
-                          type="nubmer"
+                          type="number"
                           placeholder="Duration In Days"
                           value={field.value}
                           onChange={(e) =>
@@ -328,7 +328,7 @@ const EditPlan = () => {
                       <FormControl>
                         <Input
                           autoComplete="off"
-                          type="nubmer"
+                          type="number"
                           placeholder="Sessions"
                           value={field.value}
                           onChange={(e) =>
@@ -351,7 +351,7 @@ const EditPlan = () => {
                       <FormControl>
                         <Input
                           autoComplete="off"
-                          type="nubmer"
+                          type="number"
                           placeholder="Price (In Rupees)"
                           value={field.value}
                           onChange={(e) =>
@@ -374,7 +374,7 @@ const EditPlan = () => {
                       <FormControl>
                         <Input
                           autoComplete="off"
-                          type="nubmer"
+                          type="number"
                           placeholder="Discount (In Rupees)"
                           value={field.value}
                           onChange={(e) =>

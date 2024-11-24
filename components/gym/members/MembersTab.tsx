@@ -20,7 +20,7 @@ type MembersTabProps = {
 
 const MembersTab = ({ showView, setShowView }: MembersTabProps) => {
   return (
-    <div className="flex justify-between py-5">
+    <div className="flex justify-between">
       <div className="space-x-[2em]">
         <Button
           className="uppercase w-[10em]"

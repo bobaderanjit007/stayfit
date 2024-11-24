@@ -9,9 +9,6 @@ import {
 } from "@/helpers/formSchemas/memberFromSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -22,12 +19,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -35,10 +26,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { DatePicker } from "@/components/ui/date-picker";
 
 const AddNewEnquiry = () => {
   const router = useRouter();
-  const [date, setDate] = React.useState<Date>();
+  // const [date, setDate] = React.useState<Date>();
 
   const addEnquiryForm = useForm<z.infer<typeof addEnquiryFormSchema>>({
     resolver: zodResolver(addEnquiryFormSchema),
@@ -127,63 +119,20 @@ const AddNewEnquiry = () => {
                   </FormItem>
                 )}
               />
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={cn(
-                      "w-[280px] justify-start text-left font-normal",
-                      !date && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
+
               <FormField
                 control={addEnquiryForm.control}
-                name="mobileNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Date Of Birth</FormLabel>
+                name="dateOfBirth"
+                render={() => (
+                  <FormItem className="flex flex-col justify-between">
+                    <FormLabel className="mt-[0.4em]">Date Of Birth</FormLabel>
                     <FormControl>
-                      <Input
-                        autoComplete="off"
-                        placeholder="Date Of Birth"
-                        {...field}
-                      />
+                      <DatePicker />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {/* <FormField
-                control={addEnquiryForm.control}
-                name="dateOfBirth"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Date Of Birth</FormLabel>
-                    <FormControl>
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={(date) => field.onChange(date)}
-                        className="rounded-md border"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> */}
               <FormField
                 control={addEnquiryForm.control}
                 name="gender"
