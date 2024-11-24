@@ -27,7 +27,7 @@ const GymSchedule = () => {
             Diet
           </Button>
           <Button
-            className="uppercase w-[10em]"
+            className="uppercase w-[10em] sr-only"
             variant={scheduleTab == "food-menu" ? "default" : "outline"}
             onClick={() => setScheduleTab("food-menu")}
           >

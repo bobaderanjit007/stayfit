@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { useState } from "react";
-
 import { randomPlanData } from "@/helpers/randomDataGenerator/plan";
 import { PlanCardTypes } from "@/helpers/Types/plan";
 import PlanCard from "@/components/gym/plan/PlanCard";

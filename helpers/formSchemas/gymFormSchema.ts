@@ -414,3 +414,14 @@ export const productDefaultValues = {
   price: 0,
   description: "",
 };
+
+// Workout Plan
+export const workoutPlanFormSchema = z.object({
+  scheduleName: z.string().min(1, "Schedule name is required"),
+  description: z.string().optional(),
+});
+
+export const workoutPlanDefaultValues = {
+  scheduleName: "",
+  description: "",
+};

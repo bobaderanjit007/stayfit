@@ -5,32 +5,15 @@ import {
   MdDashboard,
   MdPerson,
   MdPeople,
-  MdEvent,
-  // MdOutlineSchedule,
-  // MdAnalytics,
-  // MdReport,
-  // MdFitnessCenter,
   MdAccountCircle,
   MdFitnessCenter,
   MdOutlineSchedule,
 } from "react-icons/md";
-import {
-  FaPhone,
-  FaMoneyBillWave,
-  // FaBookOpen,
-  // FaCalendarCheck,
-} from "react-icons/fa";
-import {
-  GiHealthIncrease,
-  GiPayMoney,
-  GiReceiveMoney,
-  // GiReceiveMoney
-} from "react-icons/gi";
-// import { IoMdNotificationsOutline } from "react-icons/io";
+import { FaPhone, FaMoneyBillWave } from "react-icons/fa";
+import { GiHealthIncrease, GiPayMoney, GiReceiveMoney } from "react-icons/gi";
 import Link from "next/link";
 import Store from "@/helpers/store";
 import { usePathname } from "next/navigation";
-import { IoMdNotificationsOutline } from "react-icons/io";
 
 const menuItems = [
   { name: "Dashboard", icon: <MdDashboard />, itemLoc: "/gym/dashboard" },
@@ -49,7 +32,7 @@ const menuItems = [
     icon: <MdPeople />,
     itemLoc: "/gym/batches",
   },
-  { name: "Attendance", icon: <MdEvent />, itemLoc: "/gym/attendance" },
+  // { name: "Attendance", icon: <MdEvent />, itemLoc: "/gym/attendance" },
   {
     name: "Plans",
     icon: <GiHealthIncrease />,
@@ -62,11 +45,11 @@ const menuItems = [
   //   itemLoc: "/gym/appointments",
   // },
   // { name: "Bookings", icon: <FaBookOpen />, itemLoc: "/gym/bookings" },
-  {
-    name: "Communications",
-    icon: <IoMdNotificationsOutline />,
-    itemLoc: "/gym/communications",
-  },
+  // {
+  //   name: "Communications",
+  //   icon: <IoMdNotificationsOutline />,
+  //   itemLoc: "/gym/communications",
+  // },
   {
     name: "Expenses",
     icon: <FaMoneyBillWave />,
