@@ -16,9 +16,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { deleteMemberById } from "@/app/actions/gym/memberActions";
 
 export type Member = {
-  id: string;
+  id: number;
   name: string;
   phone: number;
   gender: "male" | "female";
@@ -65,14 +66,6 @@ export const memberColumns: ColumnDef<Member>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              {/* <DropdownMenuItem className="p-0">
-                <Link
-                  href={`/`}
-                  className="w-full p-2"
-                >
-                  Assign New MemberShip Plan
-                </Link>
-              </DropdownMenuItem> */}
               <DropdownMenuItem className="p-0">
                 <Link
                   href={`/gym/members/${member.id}/profile`}
@@ -80,6 +73,14 @@ export const memberColumns: ColumnDef<Member>[] = [
                 >
                   View Profile
                 </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="text-red-500 hidden"
+                onClick={() => {
+                  deleteMemberById(Number(member.id));
+                }}
+              >
+                Delete Member
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

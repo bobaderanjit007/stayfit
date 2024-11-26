@@ -27,6 +27,7 @@ export const addEnquiryFormSchema = z.object({
   // Address Details
   searchAddress: z.string().optional(),
   locality: z.string().optional(),
+  city: z.string().optional(),
   state: z.string().optional(),
   country: z.string().optional(),
   address: z.string().optional(),
@@ -56,6 +57,7 @@ export const addEnquiryDefaultValues: z.infer<typeof addEnquiryFormSchema> = {
   // Address Details
   searchAddress: "",
   locality: "",
+  city: "",
   state: "",
   country: "",
   address: "",
@@ -95,46 +97,48 @@ export const memberFormSchema = z.object({
     mobileNumber: z.string().regex(/^\d{10}$/, "Invalid mobile number"),
     dateOfBirth: z.string().optional(), // Can be a date string
     gender: z.enum(["male", "female"], { message: "Gender is required" }),
-    registrationDate: z.string().optional(),
-    emergencyContact: z.string().regex(/^\d{10}$/, "Invalid contact number"),
-    emergencyContactPerson: z.string().optional(),
-    memberGSTNumber: z.string().optional(),
-    manualReceiptNumber: z.string().optional(),
+    // registrationDate: z.string().optional(),
+    // emergencyContact: z.string().regex(/^\d{10}$/, "Invalid contact number"),
+    // emergencyContactPerson: z.string().optional(),
+    // memberGSTNumber: z.string().optional(),
+    // manualReceiptNumber: z.string().optional(),
   }),
   referenceDetails: z.object({
     reference: z.enum(["walk-in", "reference", "promotion", "stayfit"], {
       message: "Reference type is required",
     }),
   }),
-  batchDetails: z.object({
-    assignBatch: z.string().optional(), // Batch selection dropdown
-  }),
-  fitnessDetails: z.object({
-    height: z.number().positive("Height must be a positive value").optional(),
-    weight: z.number().positive("Weight must be a positive value").optional(),
-    fitnessAspiration: z.string().optional(),
-    activities: z.string().optional(), // Select Activities
-    medicalConditions: z.string().optional(),
-    bloodGroup: z.string().optional(),
-    category: z.string().optional(), // Dropdown
-  }),
-  plans: z.object({
-    membershipPlan: z.boolean().optional(),
-    assignTrainer: z.boolean().optional(),
-    addOnServices: z.boolean().optional(),
-  }),
-  workoutDietSchedule: z.object({
-    workoutSchedule: z.string().optional(),
-    dietSchedule: z.string().optional(),
-    workoutStartDate: z.string().optional(),
-    workoutEndDate: z.string().optional(),
-    dietStartDate: z.string().optional(),
-    dietEndDate: z.string().optional(),
-  }),
+  // batchDetails: z.object({
+  //   assignBatch: z.string().optional(), // Batch selection dropdown
+  // }),
+  // fitnessDetails: z.object({
+  //   height: z.number().positive("Height must be a positive value").optional(),
+  //   weight: z.number().positive("Weight must be a positive value").optional(),
+  //   fitnessAspiration: z.string().optional(),
+  //   activities: z.string().optional(), // Select Activities
+  //   medicalConditions: z.string().optional(),
+  //   bloodGroup: z.string().optional(),
+  //   category: z.string().optional(), // Dropdown
+  // }),
+  // plans: z.object({
+  //   membershipPlan: z.boolean().optional(),
+  //   assignTrainer: z.boolean().optional(),
+  //   addOnServices: z.boolean().optional(),
+  // }),
+  // workoutDietSchedule: z.object({
+  //   workoutSchedule: z.string().optional(),
+  //   dietSchedule: z.string().optional(),
+  //   workoutStartDate: z.string().optional(),
+  //   workoutEndDate: z.string().optional(),
+  //   dietStartDate: z.string().optional(),
+  //   dietEndDate: z.string().optional(),
+  // }),
   addressDetails: z.object({
     searchAddress: z.string().optional(),
+    address: z.string().optional(),
     locality: z.string().optional(),
     state: z.string().optional(),
+    city: z.string().optional(),
     roomNoBuildingNo: z.string().optional(),
     country: z.string().optional(),
     pincode: z
@@ -152,40 +156,40 @@ export const memberFormDefaultValues: z.infer<typeof memberFormSchema> = {
     mobileNumber: "",
     dateOfBirth: "",
     gender: "male", // Default gender option
-    registrationDate: "",
-    emergencyContact: "",
-    emergencyContactPerson: "",
-    memberGSTNumber: "",
-    manualReceiptNumber: "",
+    // registrationDate: "",
+    // emergencyContact: "",
+    // emergencyContactPerson: "",
+    // memberGSTNumber: "",
+    // manualReceiptNumber: "",
   },
   referenceDetails: {
     reference: "walk-in", // Default reference value
   },
-  batchDetails: {
-    assignBatch: "",
-  },
-  fitnessDetails: {
-    height: 0, // Default numeric value
-    weight: 0,
-    fitnessAspiration: "",
-    activities: "",
-    medicalConditions: "",
-    bloodGroup: "",
-    category: "",
-  },
-  plans: {
-    membershipPlan: false, // Default boolean value
-    assignTrainer: false,
-    addOnServices: false,
-  },
-  workoutDietSchedule: {
-    workoutSchedule: "",
-    dietSchedule: "",
-    workoutStartDate: "",
-    workoutEndDate: "",
-    dietStartDate: "",
-    dietEndDate: "",
-  },
+  // batchDetails: {
+  //   assignBatch: "",
+  // },
+  // fitnessDetails: {
+  //   height: 0, // Default numeric value
+  //   weight: 0,
+  //   fitnessAspiration: "",
+  //   activities: "",
+  //   medicalConditions: "",
+  //   bloodGroup: "",
+  //   category: "",
+  // },
+  // plans: {
+  //   membershipPlan: false, // Default boolean value
+  //   assignTrainer: false,
+  //   addOnServices: false,
+  // },
+  // workoutDietSchedule: {
+  //   workoutSchedule: "",
+  //   dietSchedule: "",
+  //   workoutStartDate: "",
+  //   workoutEndDate: "",
+  //   dietStartDate: "",
+  //   dietEndDate: "",
+  // },
   addressDetails: {
     searchAddress: "",
     locality: "",

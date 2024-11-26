@@ -19,8 +19,9 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { IoSnowSharp } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { MemberInfo } from "@/app/(main)/gym/members/[memberId]/profile/page";
 
-const MemberProfileCard = () => {
+const MemberProfileCard = ({ memberInfo }: { memberInfo: MemberInfo }) => {
   const router = useRouter();
   return (
     <div>
@@ -51,9 +52,11 @@ const MemberProfileCard = () => {
               }}
             ></span>
             <span className="flex flex-col w-[60%]">
-              <span className="text-blue-400">Mike Tyson</span>
+              <span className="text-blue-400 capitalize">
+                {memberInfo?.first_name + " " + memberInfo?.last_name}
+              </span>
               <span className="text-[#707070]">Reg Date : 11th Nov 2024</span>
-              <span>Male</span>
+              <span className="capitalize">{memberInfo?.gender || "-"}</span>
               <span>8459299123</span>
               <span>Last Visited On - Nov 22, 2024</span>
             </span>
