@@ -64,25 +64,32 @@ const AddNewMember = () => {
               <span>Personal Details</span>{" "}
             </span>
             <div className={`grid grid-cols-4 gap-[0.8em] `}>
-              <div className="col-span-2">
-                <FormField
-                  control={addMemberForm.control}
-                  name="personalDetails.name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name *</FormLabel>
-                      <FormControl>
-                        <Input
-                          autoComplete="off"
-                          placeholder="Name"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={addMemberForm.control}
+                name="personalDetails.first_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name *</FormLabel>
+                    <FormControl>
+                      <Input autoComplete="off" placeholder="Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addMemberForm.control}
+                name="personalDetails.last_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name *</FormLabel>
+                    <FormControl>
+                      <Input autoComplete="off" placeholder="Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <div className="col-span-2">
                 <FormField
                   control={addMemberForm.control}

@@ -29,8 +29,8 @@ export async function addNewMember(values: z.infer<typeof memberFormSchema>) {
   try {
     const memberData = {
       //   "plan_id": 1,
-      first_name: values.personalDetails.name,
-      //   "last_name": "atugade",
+      first_name: values.personalDetails.first_name,
+      last_name: values.personalDetails.last_name,
       email: values.personalDetails.email,
       address_info: {
         // address1: values.addressDetails.address,

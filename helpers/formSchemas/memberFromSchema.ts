@@ -91,7 +91,8 @@ export const enquirFollowUpDefaultValues: z.infer<
 // Member Form Schema
 export const memberFormSchema = z.object({
   personalDetails: z.object({
-    name: z.string().min(1, "Name is required"),
+    first_name: z.string().min(1, "First name is required"),
+    last_name: z.string().min(1, "Last name is required"),
     email: z.string().email("Invalid email address").optional(),
     assignToStaff: z.string().optional(),
     mobileNumber: z.string().regex(/^\d{10}$/, "Invalid mobile number"),
@@ -150,7 +151,8 @@ export const memberFormSchema = z.object({
 
 export const memberFormDefaultValues: z.infer<typeof memberFormSchema> = {
   personalDetails: {
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     assignToStaff: "",
     mobileNumber: "",

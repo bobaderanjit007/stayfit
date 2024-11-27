@@ -1,9 +1,16 @@
-import React from 'react'
+import GymOwnerProfileCard from "@/components/gym/admin/GymOwnerProfileCard";
+import React from "react";
 
 const GymProfile = () => {
   return (
-    <div>GymProfile</div>
-  )
-}
+    <div className="flex space-x-[3.2em]">
+      <div className="w-[35%] space-y-[1.5em]">
+        <GymOwnerProfileCard />
+      </div>
 
-export default GymProfile
+      <div className="flex-grow">Tabs</div>
+    </div>
+  );
+};
+
+export default GymProfile;

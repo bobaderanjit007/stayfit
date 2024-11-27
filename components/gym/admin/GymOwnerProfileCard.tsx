@@ -19,9 +19,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { IoSnowSharp } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import { MemberInfo } from "@/app/(main)/gym/members/[memberId]/profile/page";
 
-const MemberProfileCard = ({ memberInfo }: { memberInfo: MemberInfo }) => {
+const GymOwnerProfileCard = () => {
   const router = useRouter();
   return (
     <div>
@@ -43,7 +42,7 @@ const MemberProfileCard = ({ memberInfo }: { memberInfo: MemberInfo }) => {
           </TooltipProvider>
         </div>
         <CardHeader className="space-y-3">
-          <CardTitle className="flex space-x-[3em] font-medium text-[0.95rem] h-[8em]">
+          <CardTitle className="flex space-x-[3em] font-medium text-[0.95rem] h-[10em]">
             {" "}
             <span
               className="block rounded-md flex-grow bg-slate-500 overflow-hidden bg-cover bg-no-repeat bg-center"
@@ -52,13 +51,12 @@ const MemberProfileCard = ({ memberInfo }: { memberInfo: MemberInfo }) => {
               }}
             ></span>
             <span className="flex flex-col w-[60%]">
-              <span className="text-blue-400 capitalize">
-                {memberInfo?.first_name + " " + memberInfo?.last_name}
-              </span>
-              <span className="text-[#707070]">Reg Date : 11th Nov 2024</span>
-              <span className="capitalize">{memberInfo?.gender || "-"}</span>
+              <span className="text-orange-400 uppercase">Admin</span>
+              <span className="text-blue-400 capitalize">Jayant Sawarkar</span>
+              <span className="text-[#707070]">jayantsawarkar@gmail.com</span>
+              <span className="capitalize">Male</span>
               <span>8459299123</span>
-              <span>Last Visited On - Nov 22, 2024</span>
+              <span>DOB - Jan 04, 2003</span>
             </span>
           </CardTitle>
           <CardDescription className="flex justify-between items-center ">
@@ -67,13 +65,14 @@ const MemberProfileCard = ({ memberInfo }: { memberInfo: MemberInfo }) => {
                 variant="outline"
                 className="uppercase text-[0.7rem] p-2 py-0 text-blue-500 border-blue-500"
               >
-                <IoSnowSharp className="w-[1.5em] h-[1.5em]" /> Freeze member
+                <IoSnowSharp className="w-[1.5em] h-[1.5em]" /> Add Finger Print
               </Button>
               <Button
                 variant="outline"
-                className="uppercase text-[0.7rem] p-2 py-0 text-red-500 border-red-500"
+                className="uppercase text-[0.7rem] p-2 py-0 text-blue-500 border-blue-500"
               >
-                <MdBlock className="w-[1.5em] h-[1.5em] " /> Block member
+                <MdBlock className="w-[1.5em] h-[1.5em] " /> Refresh Finger
+                Print
               </Button>
             </div>
             <div className="flex justify-end items-center space-x-3">
@@ -117,4 +116,4 @@ const MemberProfileCard = ({ memberInfo }: { memberInfo: MemberInfo }) => {
   );
 };
 
-export default MemberProfileCard;
+export default GymOwnerProfileCard;
