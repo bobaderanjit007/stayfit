@@ -2,11 +2,19 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { DataTable } from "@/components/gym/enquiry/data-table";
+import { GetInvoiceColumns } from "./invoiceColumns";
+import { GetCollectionColumns } from "./collectionColumns";
+import { GetCollectionsDueColumns } from "./collectionsDueColumns";
 
 const GymAccounts = () => {
   const [showAccountTab, setShowAccountTab] = useState<
     "invoice" | "collections" | "collection-due"
   >("invoice");
+
+  const invoicesColumns = GetInvoiceColumns();
+  const collectionColumns = GetCollectionColumns();
+  const collectionsDueColumns = GetCollectionsDueColumns();
   return (
     <div>
       {/* Title  */}
@@ -37,6 +45,21 @@ const GymAccounts = () => {
         <Link href="/gym/accounts/add-custom-bill">
           <Button variant="outline">Add Custom Bill</Button>
         </Link>
+      </div>
+
+      {/* Tables  */}
+
+      {/* Expenses Table  */}
+      <div className="max-w-[80vw]">
+        {showAccountTab === "invoice" ? (
+          <DataTable columns={invoicesColumns} data={[]} />
+        ) : showAccountTab === "collections" ? (
+          <DataTable columns={collectionColumns} data={[]} />
+        ) : (
+          showAccountTab === "collection-due" && (
+            <DataTable columns={collectionsDueColumns} data={[]} />
+          )
+        )}
       </div>
     </div>
   );
