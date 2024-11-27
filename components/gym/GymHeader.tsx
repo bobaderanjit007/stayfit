@@ -15,7 +15,7 @@ import Store from "@/helpers/store";
 const GymHeader = () => {
   const pathname = usePathname();
 
-  const { isShowSidebar, setIsShowSidebar } = Store.mainStore();
+  const { isShowSidebar, setIsShowSidebar } = Store.useMain();
 
   return (
     <header className=" h-[5em] flex justify-between px-[2em] shadow-lg ">

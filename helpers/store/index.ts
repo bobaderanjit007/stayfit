@@ -1,13 +1,15 @@
-import mainStore from "./mainStore";
-import authStore from "./authStore";
-import memberStore from "./memberStore";
+import useMain from "./mainStore";
+import useAuth from "./authStore";
+import useMember from "./memberStore";
+import useEnquiry from "./enquiryStore";
 
 const Store = {
-  mainStore,
-  authStore,
-  memberStore,
+  useMain,
+  useAuth,
+  useMember,
+  useEnquiry,
 };
 
-export { mainStore, authStore, memberStore };
+export { useMain, useAuth, useMember, useEnquiry };
 
 export default Store;

@@ -5,9 +5,9 @@ interface MainStore {
   setIsShowSidebar: (value: boolean) => void;
 }
 
-const mainStore = create<MainStore>((set) => ({
+const useMain = create<MainStore>((set) => ({
   isShowSidebar: true,
   setIsShowSidebar: (value: boolean) => set({ isShowSidebar: value }),
 }));
 
-export default mainStore;
+export default useMain;

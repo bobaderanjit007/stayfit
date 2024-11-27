@@ -4,7 +4,7 @@ import { create } from "zustand";
 
 interface MemberStore {
   gymAllMembersData: any[];
-  //   setGymAllMembersData: (value: any[]) => void;
+  // setGymAllMembersData: (value: any[]) => void;
 
   membersTableData: Member[];
 

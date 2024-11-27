@@ -39,6 +39,7 @@ const AddNewMember = () => {
 
   async function onSubmit(values: z.infer<typeof memberFormSchema>) {
     await addNewMember(values);
+    router.push("/gym/members");
   }
   return (
     <div>

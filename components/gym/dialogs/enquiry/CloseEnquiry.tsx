@@ -37,7 +37,7 @@ const CloseEnquiry = ({
         </DialogHeader>
         <DialogDescription>
           {" "}
-          <span className="text-blue-400 text-[1.1em]">
+          <span className="text-blue-400 text-[1.1em] capitalize">
             {closeEnquiry.name}
           </span>
         </DialogDescription>

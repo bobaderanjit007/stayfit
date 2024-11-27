@@ -3,7 +3,8 @@ import { z } from "zod";
 // Enquiry Form Schema
 export const addEnquiryFormSchema = z.object({
   // Personal Details
-  name: z.string().min(1, { message: "Name is required" }),
+  first_name: z.string().min(1, { message: "First Name is required" }),
+  last_name: z.string().min(1, { message: "Last Name is required" }),
   email: z.string().optional(),
   mobileNumber: z
     .string()
@@ -37,7 +38,8 @@ export const addEnquiryFormSchema = z.object({
 // Enquiry Form Default values
 export const addEnquiryDefaultValues: z.infer<typeof addEnquiryFormSchema> = {
   // Personal Details
-  name: "",
+  first_name: "",
+  last_name: "",
   email: "",
   mobileNumber: "",
   dateOfBirth: new Date(),

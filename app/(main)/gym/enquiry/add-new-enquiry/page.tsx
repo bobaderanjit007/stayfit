@@ -27,6 +27,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { DatePicker } from "@/components/ui/date-picker";
+import { addNewEnquiry } from "@/app/actions/gym/enquiryActions";
 
 const AddNewEnquiry = () => {
   const router = useRouter();
@@ -37,9 +38,9 @@ const AddNewEnquiry = () => {
     defaultValues: addEnquiryDefaultValues,
   });
 
-  function onSubmit(values: z.infer<typeof addEnquiryFormSchema>) {
-    router.push("/gym/dashboard");
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof addEnquiryFormSchema>) {
+    await addNewEnquiry(values);
+    router.push("/gym/enquiry");
   }
 
   return (
@@ -64,25 +65,40 @@ const AddNewEnquiry = () => {
           <div>
             <span className="text-blue-400">Personal Details</span>
             <div className="grid grid-cols-4 gap-[0.8em]">
-              <div className="col-span-2">
-                <FormField
-                  control={addEnquiryForm.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name *</FormLabel>
-                      <FormControl>
-                        <Input
-                          autoComplete="off"
-                          placeholder="Name"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={addEnquiryForm.control}
+                name="first_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First Name *</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="First Name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={addEnquiryForm.control}
+                name="last_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name *</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Last Name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <div className="col-span-2">
                 <FormField
                   control={addEnquiryForm.control}

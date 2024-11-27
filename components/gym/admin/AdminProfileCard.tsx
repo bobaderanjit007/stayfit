@@ -14,13 +14,13 @@ import {
 } from "@/components/ui/tooltip";
 
 import { CiEdit } from "react-icons/ci";
-import { MdBlock, MdOutlineMessage } from "react-icons/md";
+import { MdOutlineMessage } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { IoSnowSharp } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 
-const GymOwnerProfileCard = () => {
+const AdminProfileCard = () => {
   const router = useRouter();
   return (
     <div>
@@ -51,7 +51,9 @@ const GymOwnerProfileCard = () => {
               }}
             ></span>
             <span className="flex flex-col w-[60%]">
-              <span className="text-orange-400 uppercase">Admin</span>
+              <span className="text-orange-600 uppercase text-[0.9rem] tracking-wide ">
+                Admin
+              </span>
               <span className="text-blue-400 capitalize">Jayant Sawarkar</span>
               <span className="text-[#707070]">jayantsawarkar@gmail.com</span>
               <span className="capitalize">Male</span>
@@ -66,13 +68,6 @@ const GymOwnerProfileCard = () => {
                 className="uppercase text-[0.7rem] p-2 py-0 text-blue-500 border-blue-500"
               >
                 <IoSnowSharp className="w-[1.5em] h-[1.5em]" /> Add Finger Print
-              </Button>
-              <Button
-                variant="outline"
-                className="uppercase text-[0.7rem] p-2 py-0 text-blue-500 border-blue-500"
-              >
-                <MdBlock className="w-[1.5em] h-[1.5em] " /> Refresh Finger
-                Print
               </Button>
             </div>
             <div className="flex justify-end items-center space-x-3">
@@ -116,4 +111,4 @@ const GymOwnerProfileCard = () => {
   );
 };
 
-export default GymOwnerProfileCard;
+export default AdminProfileCard;

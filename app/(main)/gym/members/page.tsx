@@ -8,7 +8,7 @@ import Store from "@/helpers/store";
 
 const GymEnquiry = () => {
   const [showView, setShowView] = useState<string>("members");
-  const { getGymAllMembersData, membersTableData } = Store.memberStore();
+  const { getGymAllMembersData, membersTableData } = Store.useMember();
 
   useEffect(() => {
     getGymAllMembersData();

@@ -4,6 +4,7 @@ import axios from "axios";
 import { z } from "zod";
 import { membersapi } from "../api";
 
+// get all members data
 export async function getAllMembers() {
   try {
     const response = await axios.post(`${membersapi}/get-member-info`);
@@ -15,6 +16,7 @@ export async function getAllMembers() {
   }
 }
 
+// get member data by id
 export async function getMemberById(id: number) {
   try {
     const response = await axios.post(`${membersapi}/get-member-info?id=${id}`);
@@ -25,6 +27,7 @@ export async function getMemberById(id: number) {
   }
 }
 
+// create new member
 export async function addNewMember(values: z.infer<typeof memberFormSchema>) {
   try {
     const memberData = {
@@ -68,12 +71,13 @@ export async function addNewMember(values: z.infer<typeof memberFormSchema>) {
   }
 }
 
+// delete member
 export async function deleteMemberById(id: number) {
   try {
     const response = await axios.post(`${membersapi}/delete-member?id=${id}`);
     return response;
   } catch (error: unknown) {
-    console.error("Error fetching member data by id:");
+    console.error("Error deleting member data by id:");
     return error;
   }
 }

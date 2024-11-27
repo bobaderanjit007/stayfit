@@ -82,7 +82,7 @@ const menuItems = [
 
 const GymSidebar = () => {
   const pathname = usePathname();
-  const { isShowSidebar } = Store.mainStore();
+  const { isShowSidebar } = Store.useMain();
   return (
     <div className=" text-[1.1rem] space-y-[0.3em] bottom-0 overflow-auto h-full border-r shadow-md scrollbar-none pt-4 pb-10 scrollbar-hide">
       {menuItems.map((item, index) => (
