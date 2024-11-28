@@ -92,13 +92,14 @@ export function DataTable<TData, TValue>({
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
-                    className="capitalize"
+                    className="capitalize space-x-1"
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) =>
                       column.toggleVisibility(!!value)
                     }
                   >
-                    {column.id}
+                    <span>{column.id.split("_")[0]}</span>
+                    <span>{column.id.split("_")[1]}</span>
                   </DropdownMenuCheckboxItem>
                 );
               })}
