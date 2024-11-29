@@ -13,7 +13,7 @@ export type ShowAdminProfileTabProps =
 
 const GymProfile = () => {
   const [showProfileTab, setShowProfileTab] =
-    useState<ShowAdminProfileTabProps>("subscriptions");
+    useState<ShowAdminProfileTabProps>("company-details");
   return (
     <div className="flex space-x-[3.2em]">
       <div className="w-[40%] space-y-[1.5em]">

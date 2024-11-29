@@ -195,6 +195,18 @@ const AdminCompanyDetailsTab = () => {
         </div>
         {/* content  */}
         <div className="grid grid-cols-2 gap-5">
+          <div className="space-x-2 col-span-2">
+            <span className="text-regular border-b w-fit ">GST Charged On</span>
+            <span className="font-semibold text-[1rem] text-regular">
+              GST additional on package price
+            </span>
+          </div>
+          <div className="space-x-2 col-span-2">
+            <span className="text-regular border-b w-fit ">GST Number</span>
+            <span className="font-semibold text-[1rem] text-regular">
+              GST548639
+            </span>
+          </div>
           <div className="space-x-2">
             <span className="text-regular border-b w-fit ">GST Applicable</span>
             <span className="font-semibold text-[1rem] text-regular">No</span>
@@ -210,18 +222,6 @@ const AdminCompanyDetailsTab = () => {
           <div className="space-x-2">
             <span className="text-regular border-b w-fit ">IGST</span>
             <span className="font-semibold text-[1rem] text-regular">-</span>
-          </div>
-          <div className="space-x-2 col-span-2">
-            <span className="text-regular border-b w-fit ">GST Charged On</span>
-            <span className="font-semibold text-[1rem] text-regular">
-              GST additional on package price
-            </span>
-          </div>
-          <div className="space-x-2">
-            <span className="text-regular border-b w-fit ">GST Number</span>
-            <span className="font-semibold text-[1rem] text-regular">
-              GST548639
-            </span>
           </div>
         </div>
       </div>

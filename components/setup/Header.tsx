@@ -21,7 +21,9 @@ const Header = () => {
   return (
     <header
       className={`flex justify-between items-center px-[2.5em] ${
-        isScrolled ? "bg-gray-300 text-gray-800" : "bg-transparent"
+        isScrolled
+          ? "bg-gray-200 text-gray-800 bg-opacity-80"
+          : "bg-transparent"
       } h-[5em]  fixed w-screen flex-grow top-0 z-10`}
     >
       <div className="text-3xl font-semibold ">

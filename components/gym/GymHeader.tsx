@@ -35,7 +35,7 @@ const GymHeader = () => {
         </span>
         <span className="text-3xl font-semibold ">
           {" "}
-          <Link href="/">StayFit</Link>
+          <Link href="/gym/dashboard">StayFit</Link>
         </span>
       </div>
 
