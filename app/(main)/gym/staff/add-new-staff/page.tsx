@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 import { DatePicker } from "@/components/ui/date-picker";
+import { addNewStaff } from "@/app/actions/gym/staffActions";
 // import ImageUploader from "@/components/ui/image-uploader";
 
 const AddNewStaff = () => {
@@ -37,8 +38,12 @@ const AddNewStaff = () => {
     defaultValues: staffDefaultValues,
   });
 
-  function onSubmit(values: z.infer<typeof staffFormSchema>) {
+  async function onSubmit(values: z.infer<typeof staffFormSchema>) {
     console.log(values);
+    const data = await addNewStaff(values);
+    if (data) {
+      router.push("/gym/staff");
+    }
   }
   return (
     <div>

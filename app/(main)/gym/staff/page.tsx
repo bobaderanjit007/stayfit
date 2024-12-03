@@ -2,15 +2,21 @@
 import { DataTable } from "@/components/gym/enquiry/data-table";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GetTrainerColumns } from "./trainerColumns";
 import { GetStaffColumns } from "./staffColumns";
+import Store from "@/helpers/store";
 
 const GymStaff = () => {
   const [showTab, setShowTab] = useState<"staff" | "trainer">("trainer");
+  const { getGymAllStaffData, staffTableData } = Store.useStaff();
 
   const trainerColumns = GetTrainerColumns();
   const staffColumns = GetStaffColumns();
+
+  useEffect(() => {
+    getGymAllStaffData();
+  }, [getGymAllStaffData]);
 
   return (
     <div>
@@ -48,9 +54,11 @@ const GymStaff = () => {
       {/* Table  */}
       <div className="max-w-[80vw]">
         {showTab === "trainer" ? (
-          <DataTable columns={trainerColumns} data={[]} />
+          <DataTable columns={trainerColumns} data={staffTableData} />
         ) : (
-          showTab === "staff" && <DataTable columns={staffColumns} data={[]} />
+          showTab === "staff" && (
+            <DataTable columns={staffColumns} data={staffTableData} />
+          )
         )}
       </div>
     </div>

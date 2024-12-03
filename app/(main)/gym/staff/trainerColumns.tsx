@@ -1,21 +1,9 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
-
-export type trainer = {
-  sr_no: string;
-  name: string;
-  phone_no: string;
-  gender: string;
-  dob: string;
-  role: string;
-  doj: string;
-  email_id: string;
-  status: string;
-  created_by: string;
-};
+import { staff } from "./staffColumns";
 
 export const GetTrainerColumns = () => {
-  const trainerColumns: ColumnDef<trainer>[] = [
+  const trainerColumns: ColumnDef<staff>[] = [
     {
       id: "select",
       header: ({ table }) => (
@@ -39,7 +27,7 @@ export const GetTrainerColumns = () => {
       enableHiding: false,
     },
     {
-      accessorKey: "sr_no",
+      accessorKey: "id",
       header: "Sr no",
     },
     {
@@ -71,7 +59,7 @@ export const GetTrainerColumns = () => {
       header: "Emial",
     },
     {
-      accessorKey: "status",
+      accessorKey: "login_status",
       header: "Status",
     },
     {

@@ -55,6 +55,7 @@ const AdminCompanyDetailsTab = () => {
           </div>
         </div>
       </div>
+
       {/* Company Details  */}
       <div className="space-y-3">
         {/* title  */}

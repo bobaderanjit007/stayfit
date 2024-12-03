@@ -211,19 +211,23 @@ export const trainerDefaultValues = {
 // Staff
 export const staffFormSchema = z.object({
   // Personal Details
-  centre: z.string().min(1, "Centre is required"),
-  branch: z.string().min(1, "Branch is required"),
+  // center: z.string().optional(),
+  // branch: z.string().optional(),
   name: z.string().min(1, "Name is required"),
   mobileNumber: z
     .string()
     .regex(/^\d{10}$/, "Mobile number must be 10 digits")
     .min(1, "Mobile number is required"),
   email: z.string().email("Invalid email format"),
-  dateOfJoining: z.string().min(1, "Date of Joining is required"),
+  dateOfJoining: z.string().optional(),
   dateOfBirth: z.string().optional(),
   gender: z.string().optional(),
+  // specialization: z.string().optional(),
+  // experience: z.number().min(0, "Experience must be a positive number"),
+  // category: z.string().optional(),
+  // trainerFor: z.string().optional(),
 
-  // Shift Details
+  // // Shift Details
   shifts: z
     .array(
       z.object({
@@ -235,10 +239,10 @@ export const staffFormSchema = z.object({
   role: z.string().min(1, "Role is required"),
   workingHours: z.string().optional(),
   holidays: z.string().optional(),
-  allowLogin: z.boolean(),
-  allowAppLogin: z.boolean(),
+  // allowLogin: z.boolean(),
+  // allowAppLogin: z.boolean(),
 
-  // Salary Details
+  // // Salary Details
   salary: z.number().min(0, "Salary must be a positive number"),
   absentDeduction: z
     .number()
@@ -252,14 +256,15 @@ export const staffFormSchema = z.object({
     .number()
     .min(0, "Late mark deduction must be positive")
     .optional(),
-  leavesAllowedInMonth: z
-    .number()
-    .min(0, "Leaves allowed must be positive")
-    .optional(),
+  // leavesAllowedInMonth: z
+  //   .number()
+  //   .min(0, "Leaves allowed must be positive")
+  //   .optional(),
 
   // Address Details
   searchAddress: z.string().optional(),
   locality: z.string().optional(),
+  city: z.string().optional(),
   state: z.string().optional(),
   roomNumber: z.string().optional(),
   country: z.string().optional(),
@@ -268,8 +273,8 @@ export const staffFormSchema = z.object({
 
 export const staffDefaultValues = {
   // Personal Details
-  centre: "",
-  branch: "",
+  // centre: "",
+  // branch: "",
   name: "",
   mobileNumber: "",
   email: "",
@@ -277,7 +282,7 @@ export const staffDefaultValues = {
   dateOfBirth: "",
   gender: "male",
 
-  // Shift Details
+  // // Shift Details
   shifts: [
     { inTime: "", outTime: "" }, // Shift 01
     { inTime: "", outTime: "" }, // Shift 02
@@ -285,15 +290,15 @@ export const staffDefaultValues = {
   role: "",
   workingHours: "",
   holidays: "",
-  allowLogin: false,
-  allowAppLogin: false,
+  // allowLogin: false,
+  // allowAppLogin: false,
 
-  // Salary Details
+  // // Salary Details
   salary: 0,
   absentDeduction: 0,
   lateMarkAllowed: 0,
   lateMarkDeduction: 0,
-  leavesAllowedInMonth: 0,
+  // leavesAllowedInMonth: 0,
 
   // Address Details
   searchAddress: "",
