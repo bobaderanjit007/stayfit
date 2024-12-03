@@ -38,17 +38,9 @@ const GymStaff = () => {
             Staff
           </Button>
         </div>
-        {showTab == "staff" ? (
-          <Link href="/gym/staff/add-new-staff">
-            <Button variant="outline">Add New Staff</Button>
-          </Link>
-        ) : (
-          showTab == "trainer" && (
-            <Link href="/gym/staff/add-new-trainer">
-              <Button variant="outline">Add New Trainer</Button>
-            </Link>
-          )
-        )}
+        <Link href="/gym/staff/add-new-staff">
+          <Button variant="outline">Add New Staff</Button>
+        </Link>
       </div>
 
       {/* Table  */}
