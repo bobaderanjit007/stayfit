@@ -21,10 +21,12 @@ import {
 } from "./select";
 
 interface DatePickerProps {
+  ButtonClassName?: string | null;
   startYear?: number;
   endYear?: number;
 }
 export function DatePicker({
+  ButtonClassName = null,
   startYear = getYear(new Date()) - 100,
   endYear = getYear(new Date()) + 100,
 }: DatePickerProps) {
@@ -71,7 +73,9 @@ export function DatePicker({
         <Button
           variant={"outline"}
           className={cn(
-            "w-[250px] justify-start text-left font-normal",
+            `w-[250px] justify-start text-left font-normal ${
+              ButtonClassName || ""
+            }`,
             !date && "text-muted-foreground"
           )}
         >
