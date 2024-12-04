@@ -190,7 +190,7 @@ const AddNewEquipment = () => {
                 <FormItem className="flex flex-col justify-between">
                   <FormLabel className="mt-[0.4em]">Purchase Date</FormLabel>
                   <FormControl>
-                    <DatePicker ButtonClassName="w-[20em" />
+                    <DatePicker />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -205,7 +205,7 @@ const AddNewEquipment = () => {
                     Next Service Date
                   </FormLabel>
                   <FormControl>
-                    <DatePicker ButtonClassName="w-[20em" />
+                    <DatePicker />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -129,7 +129,7 @@ const AddNewStaff = () => {
                   <FormItem className="flex flex-col justify-between">
                     <FormLabel className="mt-[0.4em]">Date Of Birth</FormLabel>
                     <FormControl>
-                      <DatePicker ButtonClassName="w-[20em" />
+                      <DatePicker />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -169,7 +169,7 @@ const AddNewStaff = () => {
                       Date Of Joining
                     </FormLabel>
                     <FormControl>
-                      <DatePicker ButtonClassName="w-[20em" />
+                      <DatePicker />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
