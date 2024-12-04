@@ -132,7 +132,7 @@ const AddNewBatch = () => {
                 <FormItem className="flex flex-col justify-between">
                   <FormLabel className="mt-[0.4em]">Start Date</FormLabel>
                   <FormControl>
-                    <DatePicker ButtonClassName="w-[20em" />
+                    <DatePicker />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -145,7 +145,7 @@ const AddNewBatch = () => {
                 <FormItem className="flex flex-col justify-between">
                   <FormLabel className="mt-[0.4em]">End Date</FormLabel>
                   <FormControl>
-                    <DatePicker ButtonClassName="w-[20em" />
+                    <DatePicker />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
