@@ -21,7 +21,7 @@ const BranchDetails = () => {
   return (
     <React.Fragment>
       <ContentTitle title="Branch Details" />
-      <div className="flex space-x-[3.2em] justify-between">
+      <div className="flex justify-between">
         <div className="w-[44%] space-y-[1.5em]">
           <BranchProfileCard />
           <BranchProfileTabsMenu
@@ -29,7 +29,7 @@ const BranchDetails = () => {
             setShowProfileTab={setShowProfileTab}
           />
         </div>
-        <div className=" w-[55%]">
+        <div className=" w-[54%]">
           {showProfileTab == "branch-info" ? (
             <BranchBasicInfoTab />
           ) : showProfileTab == "timing" ? (

@@ -22,7 +22,7 @@ const GymHeader = () => {
   const { isShowSidebar, setIsShowSidebar } = Store.useMain();
 
   return (
-    <header className=" h-[5em] flex justify-between px-[2em] shadow-lg ">
+    <header className=" h-[5em] flex justify-between px-[2em] shadow-md border border-b">
       {/* Menu btn, logo */}
       <div className="flex items-center space-x-[1em]">
         <span className="text-[1.4em] ">

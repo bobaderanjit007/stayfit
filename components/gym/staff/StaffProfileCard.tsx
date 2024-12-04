@@ -16,8 +16,6 @@ import {
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineMessage } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
-import { IoSnowSharp } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 
 const StaffProfileCard = () => {

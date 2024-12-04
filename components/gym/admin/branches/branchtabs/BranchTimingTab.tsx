@@ -1,17 +1,72 @@
+import { Clock3 } from "lucide-react";
 import React from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { CiEdit } from "react-icons/ci";
 
-const daysInDecember2024 = Array.from({ length: 31 }, (_, i) => {
-  const date = new Date(2024, 11, i + 1); // Month is 0-indexed; 11 represents December
-  return {
-    Date: date.toISOString().split("T")[0], // Format as YYYY-MM-DD
-    Lunch: { attended: false, reason: "" },
-    Dinner: { attended: true, reason: "" },
-  };
-});
+import { ColumnDef } from "@tanstack/react-table";
+import { DataTable } from "@/components/gym/enquiry/data-table";
+
+export type BranchTiming = {
+  name: string;
+  opening: string;
+  closing: string;
+};
+
+export const BranchTimingColumns: ColumnDef<BranchTiming>[] = [
+  {
+    accessorKey: "name",
+    header: "Day",
+    cell: ({ row }) => <span>{row.original.name}</span>,
+  },
+  {
+    accessorKey: "opening",
+    header: "Opening Time",
+    cell: ({ row }) => <span>{row.original.opening}</span>,
+  },
+  {
+    accessorKey: "closing",
+    header: "Closing Time",
+    cell: ({ row }) => <span>{row.original.closing}</span>,
+  },
+];
+
+export const data = [
+  { name: "Monday", opening: "06:00", closing: "22:00" },
+  { name: "Tuesday", opening: "06:00", closing: "22:00" },
+  { name: "Wednesday", opening: "06:00", closing: "22:00" },
+  { name: "Thursday", opening: "06:00", closing: "22:00" },
+  { name: "Friday", opening: "06:00", closing: "22:00" },
+  { name: "Saturday", opening: "06:00", closing: "22:00" },
+];
 
 const BranchTimingTab = () => {
-  console.log(daysInDecember2024);
-  return <div>BranchTimingTab</div>;
+  return (
+    <div className="space-y-3 px-2">
+      <div className="flex items-center border-b justify-between">
+        <span className="flex items-center text-xl font-semibold text-blue-800 capitalize space-x-2">
+          <Clock3 className="h-[0.9em]" />
+          <span>Timing</span>
+        </span>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <CiEdit className="w-[1.3em] h-[1.3em]" />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Edit Timing</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+
+      <DataTable columns={BranchTimingColumns} data={data} />
+    </div>
+  );
 };
 
 export default BranchTimingTab;

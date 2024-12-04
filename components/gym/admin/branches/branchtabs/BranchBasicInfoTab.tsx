@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { MapPin, List, ReceiptIndianRupee } from "lucide-react";
 import {
@@ -7,10 +8,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CiEdit } from "react-icons/ci";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const BranchBasicInfoTab = () => {
+  const { branchId } = useParams();
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 ">
       {/* Branch Logo */}
       {/* <div className="space-y-3">
         <div className="flex items-center border-b justify-between">
@@ -47,10 +51,12 @@ const BranchBasicInfoTab = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                <CiEdit className="w-[1.3em] h-[1.3em]" />
+                <Link href={`/gym/profile/branch/${branchId}/edit-branch`}>
+                  <CiEdit className="w-[1.3em] h-[1.3em]" />
+                </Link>{" "}
               </TooltipTrigger>
               <TooltipContent>
-                <p>Edit Information</p>
+                <p>Edit Branch</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -74,7 +80,7 @@ const BranchBasicInfoTab = () => {
           </div>
           <div className="space-x-2 text-regular col-span-2">
             <span className=" border-b w-fit">Amenities</span>
-            <span className="font-semibold text-[1rem] grid grid-cols-5">
+            <span className="font-semibold text-[1rem] flex flex-wrap ">
               {"CCTV, Water Purifier, Shower, Locker, Wi-Fi, Steam, Women's Section, Massage Room, Chairs"
                 .split(", ")
                 .map((aminity, index) => {
@@ -101,20 +107,6 @@ const BranchBasicInfoTab = () => {
             <ReceiptIndianRupee className="h-[0.9em] " />{" "}
             <span>GST Details</span>
           </span>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                {" "}
-                <CiEdit
-                  className="w-[1.3em] h-[1.3em]"
-                  // onClick={() => router.push("edit-profile")}
-                />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Edit GST</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
         </div>
         {/* content  */}
         <div className="grid grid-cols-2 gap-5">
@@ -156,16 +148,6 @@ const BranchBasicInfoTab = () => {
             <MapPin className="h-[0.9em]" />
             <span>Address</span>
           </span>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <CiEdit className="w-[1.3em] h-[1.3em]" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Edit Address</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div className="space-x-2 col-span-2">

@@ -9,23 +9,22 @@ import {
 } from "@/components/ui/tooltip";
 
 import { CiEdit } from "react-icons/ci";
-import { useRouter } from "next/navigation";
 import { GrLocation } from "react-icons/gr";
 import { Phone, QrCode } from "lucide-react";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 
 const BranchProfileCard = () => {
-  const router = useRouter();
+  const { branchId } = useParams();
   return (
     <Card className="relative">
       <div className="absolute right-[0.8em] top-[0.4em] ">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              {" "}
-              <CiEdit
-                className="w-[1.3em] h-[1.3em]"
-                onClick={() => router.push("edit-profile")}
-              />
+              <Link href={`/gym/profile/branch/${branchId}/edit-branch`}>
+                <CiEdit className="w-[1.3em] h-[1.3em]" />
+              </Link>{" "}
             </TooltipTrigger>
             <TooltipContent>
               <p>Edit Branch</p>

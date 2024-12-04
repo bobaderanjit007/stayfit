@@ -12,7 +12,9 @@ export default function RootLayout({
       <GymHeader />
       <div className="flex h-[calc(100vh-5em)]">
         <GymSidebar />
-        <div className="flex-grow px-[3vw] overflow-auto py-5">{children}</div>
+        <div className="flex-grow px-[3vw]  py-5 w-[70%] h-[88vh] overflow-auto">
+          {children}
+        </div>
       </div>
     </div>
   );

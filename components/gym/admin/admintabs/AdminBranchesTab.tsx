@@ -4,10 +4,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Network } from "lucide-react";
+import { Eye, Network } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { CiEdit } from "react-icons/ci";
 
 const AdminBranchesTab = () => {
   return (
@@ -28,11 +27,11 @@ const AdminBranchesTab = () => {
                 <TooltipTrigger>
                   {" "}
                   <Link href={"/gym/profile/branch/413"}>
-                    <CiEdit className="w-[1.3em] h-[1.3em]" />
+                    <Eye className="w-[1.3em] h-[1.3em]" />
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Edit Branch</p>
+                  <p>View Branch</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
