@@ -15,32 +15,6 @@ const BranchBasicInfoTab = () => {
   const { branchId } = useParams();
   return (
     <div className="space-y-5 ">
-      {/* Branch Logo */}
-      {/* <div className="space-y-3">
-        <div className="flex items-center border-b justify-between">
-          <span className="flex items-center text-xl font-semibold text-blue-800 capitalize space-x-2">
-            <Tag className="h-[0.9em] -rotate-45" />
-            <span>Branch Logo</span>
-          </span>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <CiEdit className="w-[1.3em] h-[1.3em]" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Edit Logo</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-        <div
-          className="block w-[9em] h-[9em] hover:shadow-lg hover:scale-105 transition-all duration-200 rounded-full bg-slate-500 overflow-hidden bg-cover bg-no-repeat bg-center"
-          style={{
-            backgroundImage: `url(https://via.placeholder.com/150)`, // Replace with actual image URL
-          }}
-        ></div>
-      </div> */}
-
       {/* Basic Information */}
       <div className="space-y-3">
         <div className="flex items-center border-b justify-between">

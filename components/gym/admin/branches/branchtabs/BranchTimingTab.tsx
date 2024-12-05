@@ -1,3 +1,4 @@
+"use client";
 import { Clock3 } from "lucide-react";
 import React from "react";
 import {
@@ -10,6 +11,8 @@ import { CiEdit } from "react-icons/ci";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/gym/enquiry/data-table";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 export type BranchTiming = {
   name: string;
@@ -45,6 +48,7 @@ export const data = [
 ];
 
 const BranchTimingTab = () => {
+  const { branchId } = useParams();
   return (
     <div className="space-y-3 px-2">
       <div className="flex items-center border-b justify-between">
@@ -55,7 +59,10 @@ const BranchTimingTab = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <CiEdit className="w-[1.3em] h-[1.3em]" />
+              <Link href={`/gym/profile/branch/${branchId}/edit-timing`}>
+                {" "}
+                <CiEdit className="w-[1.3em] h-[1.3em]" />
+              </Link>
             </TooltipTrigger>
             <TooltipContent>
               <p>Edit Timing</p>

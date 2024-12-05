@@ -261,25 +261,6 @@ const EditBranch = () => {
           <div>
             <span className="text-blue-400">Address Details</span>
             <div className="grid grid-cols-4 gap-[0.8em]">
-              {/* <div className="col-span-2">
-                <FormField
-                  control={editBranchForm.control}
-                  name="address.searchAddress"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Search Address </FormLabel>
-                      <FormControl>
-                        <Input
-                          autoComplete="off"
-                          placeholder="Search Address"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div> */}
               <div className="col-span-2">
                 <FormField
                   control={editBranchForm.control}
