@@ -18,10 +18,9 @@ import { MdOutlineMessage } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { IoSnowSharp } from "react-icons/io5";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const AdminProfileCard = () => {
-  const router = useRouter();
   return (
     <div>
       <Card className="relative">
@@ -30,10 +29,9 @@ const AdminProfileCard = () => {
             <Tooltip>
               <TooltipTrigger>
                 {" "}
-                <CiEdit
-                  className="w-[1.3em] h-[1.3em]"
-                  onClick={() => router.push("edit-profile")}
-                />
+                <Link href={"/gym/profile/edit-profile"}>
+                  <CiEdit className="w-[1.3em] h-[1.3em]" />
+                </Link>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Edit Profile</p>

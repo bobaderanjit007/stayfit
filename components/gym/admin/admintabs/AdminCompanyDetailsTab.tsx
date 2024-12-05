@@ -26,10 +26,10 @@ const AdminCompanyDetailsTab = () => {
             <Tooltip>
               <TooltipTrigger>
                 {" "}
-                <CiEdit
-                  className="w-[1.3em] h-[1.3em]"
-                  // onClick={() => router.push("edit-profile")}
-                />
+                <Link href="/gym/profile/edit-brand">
+                  {" "}
+                  <CiEdit className="w-[1.3em] h-[1.3em]" />
+                </Link>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Edit Brand</p>
@@ -67,11 +67,9 @@ const AdminCompanyDetailsTab = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                {" "}
-                <CiEdit
-                  className="w-[1.3em] h-[1.3em]"
-                  // onClick={() => router.push("edit-profile")}
-                />
+                <Link href="/gym/profile/edit-brand">
+                  <CiEdit className="w-[1.3em] h-[1.3em]" />
+                </Link>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Edit Company</p>
@@ -129,11 +127,9 @@ const AdminCompanyDetailsTab = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                {" "}
-                <CiEdit
-                  className="w-[1.3em] h-[1.3em]"
-                  // onClick={() => router.push("edit-profile")}
-                />
+                <Link href="/gym/profile/edit-brand">
+                  <CiEdit className="w-[1.3em] h-[1.3em]" />
+                </Link>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Edit Bank</p>
@@ -183,10 +179,9 @@ const AdminCompanyDetailsTab = () => {
             <Tooltip>
               <TooltipTrigger>
                 {" "}
-                <CiEdit
-                  className="w-[1.3em] h-[1.3em]"
-                  // onClick={() => router.push("edit-profile")}
-                />
+                <Link href="/gym/profile/edit-brand">
+                  <CiEdit className="w-[1.3em] h-[1.3em]" />
+                </Link>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Edit GST</p>

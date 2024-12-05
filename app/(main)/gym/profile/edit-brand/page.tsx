@@ -1,8 +1,8 @@
 "use client";
 import ContentTitle from "@/components/setup/ContentTitle";
 import {
-  branchFormDefaultValues,
-  branchFormSchema,
+  brandDetailsFormDefaultValues,
+  brandDetailsFormSchema,
 } from "@/helpers/formSchemas/adminFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
@@ -28,14 +28,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const EditBranch = () => {
+const EditBrand = () => {
   const router = useRouter();
-  const editBranchForm = useForm<z.infer<typeof branchFormSchema>>({
-    resolver: zodResolver(branchFormSchema),
-    defaultValues: branchFormDefaultValues,
+  const editBrandForm = useForm<z.infer<typeof brandDetailsFormSchema>>({
+    resolver: zodResolver(brandDetailsFormSchema),
+    defaultValues: brandDetailsFormDefaultValues,
   });
 
-  async function onSubmit(values: z.infer<typeof branchFormSchema>) {
+  async function onSubmit(values: z.infer<typeof brandDetailsFormSchema>) {
     console.log(values);
   }
 
@@ -44,25 +44,25 @@ const EditBranch = () => {
       <ContentTitle title="Edit Brand Details" />
 
       {/* Edit Brand Form  */}
-      <Form {...editBranchForm}>
+      <Form {...editBrandForm}>
         <form
-          onSubmit={editBranchForm.handleSubmit(onSubmit)}
+          onSubmit={editBrandForm.handleSubmit(onSubmit)}
           className="space-y-8"
         >
-          {/* Branch Details  */}
+          {/* Brand Details  */}
           <div>
-            <span className="text-blue-400">Branch Details</span>
+            <span className="text-blue-400">Brand Details</span>
             <div className="grid grid-cols-4 gap-[0.8em]">
               <FormField
-                control={editBranchForm.control}
-                name="branch_name"
+                control={editBrandForm.control}
+                name="brand_name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Branch Name *</FormLabel>
+                    <FormLabel>Brand Name *</FormLabel>
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        placeholder="Branch Name"
+                        placeholder="Brand Name"
                         {...field}
                       />
                     </FormControl>
@@ -70,43 +70,49 @@ const EditBranch = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={editBranchForm.control}
-                name="branch_type"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Branch Type *</FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        placeholder="Branch Type"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={editBranchForm.control}
-                name="branch_for"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Branch For *</FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        placeholder="Branch For"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            </div>
+          </div>
 
+          {/* Company Details  */}
+          <div>
+            <span className="text-blue-400">Company Details</span>
+            <div className="grid grid-cols-4 gap-[0.8em]">
               <FormField
-                control={editBranchForm.control}
+                control={editBrandForm.control}
+                name="company_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Company Name *</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Company Name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={editBrandForm.control}
+                name="pan_number"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Pan Number </FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Pan Number"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={editBrandForm.control}
                 name="established_date"
                 render={() => (
                   <FormItem>
@@ -119,15 +125,15 @@ const EditBranch = () => {
                 )}
               />
               <FormField
-                control={editBranchForm.control}
-                name="carpet_area"
+                control={editBrandForm.control}
+                name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Carpet Area </FormLabel>
+                    <FormLabel>Address </FormLabel>
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        placeholder="Carpet Area"
+                        placeholder="Address"
                         {...field}
                       />
                     </FormControl>
@@ -136,17 +142,89 @@ const EditBranch = () => {
                 )}
               />
               <FormField
-                control={editBranchForm.control}
-                name="amenities"
+                control={editBrandForm.control}
+                name="website"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Amenities </FormLabel>
+                    <FormLabel>Website </FormLabel>
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        placeholder="Amenities"
+                        placeholder="Website"
                         {...field}
                       />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          {/* Bank Details  */}
+          <div>
+            <span className="text-blue-400">Bank Details</span>
+            <div className="grid grid-cols-4 gap-[0.8em]">
+              <FormField
+                control={editBrandForm.control}
+                name="bank_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bank Name </FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Bank Name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={editBrandForm.control}
+                name="bank_branch"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bank Branch </FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Bank Branch"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={editBrandForm.control}
+                name="account_number"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Account No. </FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="off"
+                        placeholder="Account No."
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={editBrandForm.control}
+                name="ifsc"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>IFSC </FormLabel>
+                    <FormControl>
+                      <Input autoComplete="off" placeholder="IFSC" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -160,7 +238,7 @@ const EditBranch = () => {
             <span className="text-blue-400">GST Details</span>
             <div className="grid grid-cols-4 gap-[0.8em]">
               <FormField
-                control={editBranchForm.control}
+                control={editBrandForm.control}
                 name="gst_charged_on"
                 render={({ field }) => (
                   <FormItem>
@@ -177,7 +255,7 @@ const EditBranch = () => {
                 )}
               />
               <FormField
-                control={editBranchForm.control}
+                control={editBrandForm.control}
                 name="gst_number"
                 render={({ field }) => (
                   <FormItem>
@@ -194,7 +272,7 @@ const EditBranch = () => {
                 )}
               />
               <FormField
-                control={editBranchForm.control}
+                control={editBrandForm.control}
                 name="gst_applicable"
                 render={({ field }) => (
                   <FormItem>
@@ -216,7 +294,7 @@ const EditBranch = () => {
               />
 
               <FormField
-                control={editBranchForm.control}
+                control={editBrandForm.control}
                 name="cgst"
                 render={({ field }) => (
                   <FormItem>
@@ -229,7 +307,7 @@ const EditBranch = () => {
                 )}
               />
               <FormField
-                control={editBranchForm.control}
+                control={editBrandForm.control}
                 name="sgst"
                 render={({ field }) => (
                   <FormItem>
@@ -242,139 +320,13 @@ const EditBranch = () => {
                 )}
               />
               <FormField
-                control={editBranchForm.control}
+                control={editBrandForm.control}
                 name="igst"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>IGST </FormLabel>
                     <FormControl>
                       <Input autoComplete="off" placeholder="IGST" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-          </div>
-
-          {/* Address Details */}
-          <div>
-            <span className="text-blue-400">Address Details</span>
-            <div className="grid grid-cols-4 gap-[0.8em]">
-              {/* <div className="col-span-2">
-                <FormField
-                  control={editBranchForm.control}
-                  name="address.searchAddress"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Search Address </FormLabel>
-                      <FormControl>
-                        <Input
-                          autoComplete="off"
-                          placeholder="Search Address"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div> */}
-              <div className="col-span-2">
-                <FormField
-                  control={editBranchForm.control}
-                  name="address.address"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Address</FormLabel>
-                      <FormControl>
-                        <Input
-                          autoComplete="off"
-                          placeholder="Address"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <FormField
-                control={editBranchForm.control}
-                name="address.locality"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Locality </FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        placeholder="Locality"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={editBranchForm.control}
-                name="address.city"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>City </FormLabel>
-                    <FormControl>
-                      <Input autoComplete="off" placeholder="City" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={editBranchForm.control}
-                name="address.state"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>State </FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        placeholder="State"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={editBranchForm.control}
-                name="address.country"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Country </FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        placeholder="Country"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={editBranchForm.control}
-                name="address.pincode"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Pincode </FormLabel>
-                    <FormControl>
-                      <Input
-                        autoComplete="off"
-                        placeholder="Pincode"
-                        {...field}
-                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -399,4 +351,4 @@ const EditBranch = () => {
   );
 };
 
-export default EditBranch;
+export default EditBrand;
