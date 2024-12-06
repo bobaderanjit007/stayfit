@@ -35,7 +35,10 @@ export type ChangeTrialDateState = {
 };
 
 const GymEnquiry = () => {
-  const { enquiryTableData, getGymAllEnquiryData } = Store.useEnquiry();
+  const {
+    // enquiryTableData,
+    getGymAllEnquiryData,
+  } = Store.useEnquiry();
 
   const [showView, setShowView] = useState<string>("enquiry");
   const [enquiryFollowUp, setEnquiryFollowUp] = useState<EnquiryFollowUpState>({
@@ -102,7 +105,7 @@ const GymEnquiry = () => {
       {/* Table  */}
       <div className="max-w-[80vw]">
         {showView === "enquiry" ? (
-          <DataTable columns={enquiryColumns} data={enquiryTableData} />
+          <DataTable columns={enquiryColumns} data={enquiryData} />
         ) : (
           <DataTable columns={trialColumns} data={randomTrials} />
         )}
@@ -112,6 +115,56 @@ const GymEnquiry = () => {
 };
 
 export default GymEnquiry;
+
+const enquiryData: Enquiry[] = [
+  {
+    id: "E1",
+    name: "Alice Johnson",
+    phone: 9876543210,
+    gender: "female",
+    followUpDate: new Date("2024-12-10"),
+    enqStatus: "follow-up",
+    leadType: "warm",
+    expectedJoining: new Date("2025-01-01"),
+    enqDate: new Date("2024-12-01"),
+    lastUpdated: new Date("2024-12-05"),
+    remark: "Interested in morning batch.",
+    lastCallStatus: "call-connected",
+    referenceType: "promotion",
+    reference: "Instagram Ad",
+    assignedTo: "John Doe",
+    updatedBy: "Jane Smith",
+  },
+  {
+    id: "E2",
+    name: "Mark Spencer",
+    phone: 9123456789,
+    gender: "male",
+    enqStatus: "converted",
+    leadType: "converted",
+    enqDate: new Date("2024-11-20"),
+    lastUpdated: new Date("2024-12-02"),
+    remark: "Joined as a premium member.",
+    referenceType: "reference",
+    reference: "Friend - Alice",
+    assignedTo: "Robert Brown",
+    updatedBy: "John Doe",
+  },
+  {
+    id: "E3",
+    name: "Emily Davis",
+    phone: 9988776655,
+    gender: "female",
+    followUpDate: new Date("2024-12-15"),
+    enqStatus: "enquiry",
+    leadType: "free-trial",
+    enqDate: new Date("2024-12-05"),
+    lastCallStatus: "ringing-not-responding",
+    referenceType: "walk-in",
+    assignedTo: "Jane Smith",
+    updatedBy: "Robert Brown",
+  },
+];
 
 const randomTrials: Trial[] = [
   {

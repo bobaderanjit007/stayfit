@@ -1,3 +1,4 @@
+"use client";
 import { MapPin } from "lucide-react";
 import React from "react";
 import {
@@ -7,6 +8,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CiEdit } from "react-icons/ci";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const categories = ["Gym", "Yoga"];
 
@@ -33,6 +36,7 @@ const services = [
 ];
 
 const BranchServicesTab = () => {
+  const { branchId } = useParams();
   return (
     <div className="space-y-3">
       <div className="flex items-center border-b justify-between">
@@ -43,7 +47,10 @@ const BranchServicesTab = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <CiEdit className="w-[1.3em] h-[1.3em]" />
+              <Link href={`/gym/profile/branch/${branchId}/edit-services`}>
+                {" "}
+                <CiEdit className="w-[1.3em] h-[1.3em]" />
+              </Link>
             </TooltipTrigger>
             <TooltipContent>
               <p>Edit Services</p>

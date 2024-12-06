@@ -15,16 +15,16 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 
 export type BranchTiming = {
-  name: string;
+  day: string;
   opening: string;
   closing: string;
 };
 
-export const BranchTimingColumns: ColumnDef<BranchTiming>[] = [
+const BranchTimingColumns: ColumnDef<BranchTiming>[] = [
   {
-    accessorKey: "name",
+    accessorKey: "day",
     header: "Day",
-    cell: ({ row }) => <span>{row.original.name}</span>,
+    cell: ({ row }) => <span>{row.original.day}</span>,
   },
   {
     accessorKey: "opening",
@@ -39,12 +39,12 @@ export const BranchTimingColumns: ColumnDef<BranchTiming>[] = [
 ];
 
 export const data = [
-  { name: "Monday", opening: "06:00", closing: "22:00" },
-  { name: "Tuesday", opening: "06:00", closing: "22:00" },
-  { name: "Wednesday", opening: "06:00", closing: "22:00" },
-  { name: "Thursday", opening: "06:00", closing: "22:00" },
-  { name: "Friday", opening: "06:00", closing: "22:00" },
-  { name: "Saturday", opening: "06:00", closing: "22:00" },
+  { day: "Monday", opening: "06:00", closing: "22:00" },
+  { day: "Tuesday", opening: "06:00", closing: "22:00" },
+  { day: "Wednesday", opening: "06:00", closing: "22:00" },
+  { day: "Thursday", opening: "06:00", closing: "22:00" },
+  { day: "Friday", opening: "06:00", closing: "22:00" },
+  { day: "Saturday", opening: "06:00", closing: "22:00" },
 ];
 
 const BranchTimingTab = () => {
@@ -71,7 +71,7 @@ const BranchTimingTab = () => {
         </TooltipProvider>
       </div>
 
-      <DataTable columns={BranchTimingColumns} data={data} />
+      <DataTable columns={BranchTimingColumns} data={data} searchBy="day" />
     </div>
   );
 };

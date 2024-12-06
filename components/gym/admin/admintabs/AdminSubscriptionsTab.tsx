@@ -7,15 +7,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 
 const AdminSubscriptionsTab = () => {
   const [showPlansOf, setShowPlansOf] = useState<"active" | "expired">(
@@ -97,17 +99,21 @@ export const AdminSubscriptionCard = () => {
   return (
     <Card className="relative">
       <div className="absolute right-[0.8em] top-[0.4em] ">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              {" "}
-              <MoreHorizontal className="h-4 w-4 rotate-90" />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Actions</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        {" "}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreVertical className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem className="text-">Renew Plan</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <CardHeader className="space-y-3">
         <CardTitle className="flex space-x-[3em] font-medium text-[0.95rem] ">

@@ -78,6 +78,9 @@ export const GetTrialColumns = (
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <Link href={`/gym/enquiry/${trial.id}`}>
+                  <DropdownMenuItem>View Details</DropdownMenuItem>
+                </Link>
                 <DropdownMenuItem
                   className="p-"
                   onClick={() =>

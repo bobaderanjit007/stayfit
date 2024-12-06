@@ -80,11 +80,11 @@ const menuItems = [
   { name: "Profile", icon: <MdAccountCircle />, itemLoc: "/gym/profile" },
 ];
 
-const GymSidebar = () => {
+const MobileGymSidebar = () => {
   const pathname = usePathname();
   const { isShowSidebar } = Store.useMain();
   return (
-    <div className={` hidden lg:flex flex-col text-[1.1rem] space-y-[0.3em] bottom-0 overflow-auto h-full border-r shadow-md scrollbar-none pt-4 pb-10 scrollbar-hide`}>
+    <div className={`${!isShowSidebar ? "" : "translate-x-[-50em]"} absolute z-10 transition-transform duration-300 flex xl:hidden flex-col text-[1.1rem] space-y-[0.3em] bottom-0 left-0 overflow-auto h-full border-r shadow-md scrollbar-none pt-4 pb-10 scrollbar-hide bg-white `}>
       {menuItems.map((item, index) => (
         <Link
           href={item.itemLoc}
@@ -94,21 +94,17 @@ const GymSidebar = () => {
               ? "bg-red-600 text-white"
               : "text-[#4a4a4a]"
           } flex items-center  space-x-[0.5em] px-4 ${
-            isShowSidebar && "xl:min-w-[10em]"
+            isShowSidebar && "min-w-[10em]"
           }`}
         >
           <div className="py-3">{item.icon}</div>
-          <div
-            className={`${
-              isShowSidebar ? "hidden xl:flex" : "hidden"
-            } transition-all duration-200 `}
-          >
+            <span className=" ">
             {item.name}
-          </div>
+            </span>
         </Link>
       ))}
     </div>
   );
 };
 
-export default GymSidebar;
+export default MobileGymSidebar;

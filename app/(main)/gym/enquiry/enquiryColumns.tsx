@@ -77,8 +77,13 @@ export const GetEnquiryColumns = (
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <Link href={`/gym/enquiry/${enquiry.id}`}>
+                  <DropdownMenuItem className="p-">
+                    View Details
+                  </DropdownMenuItem>
+                </Link>
                 <DropdownMenuItem
-                  className="p-"
+                  className=""
                   onClick={() =>
                     setEnquiryFollowUp({
                       show: true,
@@ -119,6 +124,11 @@ export const GetEnquiryColumns = (
     {
       accessorKey: "name",
       header: "Name",
+      cell: ({ row }) => {
+        return (
+          <div className="text-left font-medium">{row.getValue("name")}</div>
+        );
+      },
     },
     {
       accessorKey: "phone",

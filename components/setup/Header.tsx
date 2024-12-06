@@ -28,7 +28,7 @@ const Header = () => {
     >
       <div className="text-3xl font-semibold ">
         {" "}
-        <Link href="/gym/dashboard">StayFit</Link>
+        <Link href="/gym/dashboard" className="select-none">StayFit</Link>
       </div>
       <div className="flex space-x-[2em] font-extralight text-[1rem]">
         <Link href="/" className="text-red-500">

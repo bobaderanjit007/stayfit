@@ -15,6 +15,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { AppWindow, Bell, LogOut, Settings, User } from "lucide-react";
+// import { ToggleTheme } from "../ui/toggle-theme";
 
 const GymHeader = () => {
   const pathname = usePathname();
@@ -35,12 +36,14 @@ const GymHeader = () => {
         </span>
         <span className="text-3xl font-semibold ">
           {" "}
-          <Link href="/gym/dashboard">StayFit</Link>
+          <Link href="/gym/dashboard" className="select-none">
+            StayFit
+          </Link>
         </span>
       </div>
-
       {/* Setting, Notifications, Profile */}
       <div className="flex text-[1.4em] items-center space-x-[0.6em]">
+        {/* <ToggleTheme/> */}
         <Menubar className="rounded-none shadow-none borde r-b pb-2 focus:bg-transparent border-gray-300 border-x-0 border-t-0 ">
           <MenubarMenu>
             <MenubarTrigger className="space-x-5 ">
