@@ -7,15 +7,15 @@ import {
   MdPeople,
   MdAccountCircle,
   MdFitnessCenter,
-  MdOutlineSchedule,
+  // MdOutlineSchedule,
 } from "react-icons/md";
 import { FaPhone, FaMoneyBillWave } from "react-icons/fa";
-import { GiHealthIncrease, GiPayMoney, GiReceiveMoney } from "react-icons/gi";
+import { GiHealthIncrease, GiPayMoney } from "react-icons/gi";
 import Link from "next/link";
 import Store from "@/helpers/store";
 import { usePathname } from "next/navigation";
 
-const menuItems = [
+export const menuItems = [
   { name: "Dashboard", icon: <MdDashboard />, itemLoc: "/gym/dashboard" },
   {
     name: "Enquiry",
@@ -27,11 +27,11 @@ const menuItems = [
     icon: <MdPerson />,
     itemLoc: "/gym/members",
   },
-  {
-    name: "Batches",
-    icon: <MdPeople />,
-    itemLoc: "/gym/batches",
-  },
+  // {
+  //   name: "Batches",
+  //   icon: <MdPeople />,
+  //   itemLoc: "/gym/batches",
+  // },
   // { name: "Attendance", icon: <MdEvent />, itemLoc: "/gym/attendance" },
   {
     name: "Plans",
@@ -60,16 +60,16 @@ const menuItems = [
     icon: <GiPayMoney />,
     itemLoc: "/gym/accounts",
   },
-  {
-    name: "Add On Services",
-    icon: <GiReceiveMoney />,
-    itemLoc: "/gym/add-on-services",
-  },
-  {
-    name: "Schedule",
-    icon: <MdOutlineSchedule />,
-    itemLoc: "/gym/schedule",
-  },
+  // {
+  //   name: "Add On Services",
+  //   icon: <GiReceiveMoney />,
+  //   itemLoc: "/gym/add-on-services",
+  // },
+  // {
+  //   name: "Schedule",
+  //   icon: <MdOutlineSchedule />,
+  //   itemLoc: "/gym/schedule",
+  // },
   // { name: "Analytics", icon: <MdAnalytics />, itemLoc: "/gym/analytics" },
   // { name: "Reports", icon: <MdReport />, itemLoc: "/gym/reports" },
   {
@@ -84,7 +84,9 @@ const GymSidebar = () => {
   const pathname = usePathname();
   const { isShowSidebar } = Store.useMain();
   return (
-    <div className={` hidden lg:flex flex-col text-[1.1rem] space-y-[0.3em] bottom-0 overflow-auto h-full border-r shadow-md scrollbar-none pt-4 pb-10 scrollbar-hide`}>
+    <div
+      className={` hidden lg:flex flex-col text-[1.1rem] space-y-[0.3em] bottom-0 overflow-auto h-full border-r shadow-md scrollbar-none pt-4 pb-10 scrollbar-hide`}
+    >
       {menuItems.map((item, index) => (
         <Link
           href={item.itemLoc}

@@ -17,7 +17,7 @@ const GymExpenses = () => {
       </div>
 
       {/* Expenses Table  */}
-      <div className="max-w-[80vw]">
+      <div className="w-full">
         <DataTable columns={expensesColumns} data={[]} />
       </div>
     </div>

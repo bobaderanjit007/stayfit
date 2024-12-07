@@ -50,7 +50,7 @@ const GymAccounts = () => {
       {/* Tables  */}
 
       {/* Expenses Table  */}
-      <div className="max-w-[80vw]">
+      <div className="w-full">
         {showAccountTab === "invoice" ? (
           <DataTable columns={invoicesColumns} data={[]} />
         ) : showAccountTab === "collections" ? (

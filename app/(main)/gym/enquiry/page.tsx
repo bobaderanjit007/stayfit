@@ -103,7 +103,7 @@ const GymEnquiry = () => {
       <EnquiryTab showView={showView} setShowView={setShowView} />
 
       {/* Table  */}
-      <div className="max-w-[80vw]">
+      <div className="w-full">
         {showView === "enquiry" ? (
           <DataTable columns={enquiryColumns} data={enquiryData} />
         ) : (

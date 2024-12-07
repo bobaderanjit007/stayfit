@@ -1,6 +1,7 @@
 "use client";
 import StaffProfileCard from "@/components/gym/staff/StaffProfileCard";
 import StaffProfileTabsMenu from "@/components/gym/staff/StaffProfileTabsMenu";
+import StaffShiftTimeTab from "@/components/gym/staff/stafftabs/StaffShiftTimeTab";
 import ContentTitle from "@/components/setup/ContentTitle";
 import React, { useState } from "react";
 
@@ -25,13 +26,11 @@ const StaffProfile = () => {
           />
         </div>
         <div className="flex-grow">
-          {/* {showProfileTab === "profile" ? (
-            <MemberProfileTab />
-          ) : showProfileTab === "subscriptions" ? (
-            <MemberSubscriptionTab />
+          {showProfileTab === "shift_salary" ? (
+            <StaffShiftTimeTab />
           ) : (
             showProfileTab
-          )} */}
+          )}
         </div>
       </div>
     </section>

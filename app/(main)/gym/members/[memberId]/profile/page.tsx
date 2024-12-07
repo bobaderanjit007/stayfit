@@ -3,6 +3,7 @@ import { getMemberById } from "@/app/actions/gym/memberActions";
 import MemberProfileCard from "@/components/gym/members/MemberProfileCard";
 import MemberProfileTabsMenu from "@/components/gym/members/MemberProfileTabsMenu";
 import MemberProfileTab from "@/components/gym/members/profiletabs/MemberProfileTab";
+import MemberReferralTab from "@/components/gym/members/profiletabs/MemberReferralTab";
 import MemberSubscriptionTab from "@/components/gym/members/profiletabs/MemberSubscriptionTab";
 import ContentTitle from "@/components/setup/ContentTitle";
 import { useParams } from "next/navigation";
@@ -107,6 +108,8 @@ const MemberProfile = () => {
             <MemberProfileTab />
           ) : showProfileTab === "subscriptions" ? (
             <MemberSubscriptionTab />
+          ) : showProfileTab === "my-referrals" ? (
+            <MemberReferralTab />
           ) : (
             showProfileTab
           )}

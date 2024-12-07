@@ -86,7 +86,7 @@ const GymStaff = () => {
       </div>
 
       {/* Table  */}
-      <div className="max-w-[80vw]">
+      <div className="w-full">
         {showTab === "trainer" ? (
           <DataTable columns={staffColumns} data={staffTableData} />
         ) : (
